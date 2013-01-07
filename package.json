@@ -1,0 +1,35 @@
+{
+    "name"       : "express3-handlebars",
+    "description": "A Handlebars view engine for Express which doesn't suck.",
+    "version"    : "0.1.0",
+    "homepage"   : "https://github.com/ericf/express3-handlebars",
+
+    "keyworks": [
+        "express", "express3", "handlebars", "view", "layout", "partials"
+    ],
+
+    "repository": {
+        "type": "git",
+        "url" : "git://github.com/ericf/express3-handlebars.git"
+    },
+
+    "author": {
+        "name" : "Eric Ferraiuolo",
+        "email": "eferraiuolo@gmail.com",
+        "url"  : "http://ericf.me/"
+    },
+
+    "engines": {
+        "node": ">=0.8"
+    },
+
+     "dependencies": {
+        "async"     : "~0.1",
+        "glob"      : "3.x",
+        "handlebars": "1.x"
+    },
+
+    "main": "index.js",
+
+    "directories": {"lib": "./lib"}
+}
