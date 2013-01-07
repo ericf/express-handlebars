@@ -1,34 +1,3 @@
-Express3 Handlebars
-===================
-
-A [Handlebars][] view engine for [Express][] which doesn't suck.
-
-[Express]: https://github.com/visionmedia/express
-[Handlebars]: https://github.com/wycats/handlebars.js
-
-Installation
-------------
-
-Install using npm:
-
-    npm install express3-handlebars
-
-Usage
------
-
-```javascript
-var express = require('express'),
-    exphbs  = require('express3-handlebars'),
-
-    app = express();
-
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
-```
-
-License
--------
-
 Copyright (c) 2013 by Eric Ferraiuolo (eferraiuolo@gmail.com). All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
