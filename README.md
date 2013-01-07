@@ -183,7 +183,7 @@ app.listen(3000);
 The `main` layout can then access these precompiled partials via the `template`
 local, and render them like this:
 
-```html
+```handlebars
 <!doctype html>
 <html>
 <head>
