@@ -95,7 +95,7 @@ The following is a list of configuration properties and their default values
   app or response `locals`. **Note:** A falsy value will render without a
   layout; e.g., `res.render('home', {layout: false});`.
 
-* `extname = '.handlebars'`: The string nane of the file extension used by the
+* `extname = '.handlebars'`: The string name of the file extension used by the
   templates.
 
 * `handlebars = require('handlebars')`: The Handlebars module/implementation.
@@ -180,7 +180,7 @@ app.get('/', exposeTemplates, function (req, res, next) {
 app.listen(3000);
 ```
 
-The `main` layout can then access these precompiled partials via the `template`
+The `main` layout can then access these precompiled partials via the `templates`
 local, and render them like this:
 
 ```handlebars
