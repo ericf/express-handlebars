@@ -1,7 +1,7 @@
 Express3 Handlebars
 ===================
 
-A [Handlebars][] view engine for [Express][] which doesn't suck.
+A [Handlebars][] view engine for [Express][] that doesn't suck.
 
 [Express]: https://github.com/visionmedia/express
 [Handlebars]: https://github.com/wycats/handlebars.js
@@ -43,15 +43,15 @@ This module was designed to work great for both the simple and complex use
 cases. I _intentionally_ made sure the full implementation is exposed and is
 easily overrideable.
 
-The module exports a function which can be invoked with no arguments or a
-`config` object and it will return a function (closed over sane defaults) which
+The module exports a function that can be invoked with no arguments or a
+`config` object and it will return a function (closed over sane defaults) that
 can be registered with an Express app. It's an engine factory function.
 
-This exported engine factory has two properties which expose the underlying
+This exported engine factory has two properties that expose the underlying
 implementation:
 
-* `ExpressHandlebars()`: The constructor function which holds the internal
-  implementation on its `prototype`. This produces instance objects which store
+* `ExpressHandlebars()`: The constructor function that holds the internal
+  implementation on its `prototype`. This produces instance objects that store
   their configuration, `compiled` and `precompiled` templates, and expose an
   `engine()` function which can be registered with an Express app.
 
@@ -102,7 +102,7 @@ The following is a list of configuration properties and their default values
   This allows for the ExpressHandlebars instance to use a different Handlebars
   module/implementation than that provided by the Handlebars npm module.
 
-* `helpers`: An object which holds the helper functions used when rendering
+* `helpers`: An object that holds the helper functions used when rendering
   templates. This defaults to `handlebars.helpers`, and will merge any helpers
   specified during construction.
 
