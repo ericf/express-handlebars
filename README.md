@@ -32,6 +32,10 @@ implemented. The following is that list:
   always loaded from disk. In production, raw files and compiled templates are
   cached, including partials.
 
+* All async and non-blocking. File system I/O is slow and servers should not be
+  blocked from handling requests while reading from disk. I/O queuing is used to
+  avoid unnecessary I/O.
+
 * Ability to expose precompiled partials to the client, for template sharing.
 
 * Ability to use a different Handlebars module/implementation other than the
@@ -90,27 +94,28 @@ app.set('view engine', 'handlebars');
 The following is a list of configuration properties and their default values
 (if any):
 
-* `defaultLayout`: The string name or path of a template in the `layoutsDir` to
-  use as the default layout. This is overridden by a `layout` specified in the
-  app or response `locals`. **Note:** A falsy value will render without a
+* __`defaultLayout`__: The string name or path of a template in the `layoutsDir`
+  to use as the default layout. This is overridden by a `layout` specified in
+  the app or response `locals`. **Note:** A falsy value will render without a
   layout; e.g., `res.render('home', {layout: false});`.
 
-* `extname = '.handlebars'`: The string name of the file extension used by the
-  templates.
+* __`extname = '.handlebars'`__: The string name of the file extension used by
+  the templates.
 
-* `handlebars = require('handlebars')`: The Handlebars module/implementation.
-  This allows for the ExpressHandlebars instance to use a different Handlebars
-  module/implementation than that provided by the Handlebars npm module.
+* __`handlebars = require('handlebars')`__: The Handlebars
+  module/implementation. This allows for the `ExpressHandlebars` instance to use
+  a different Handlebars module/implementation than that provided by the
+  Handlebars npm module.
 
-* `helpers`: An object which holds the helper functions used when rendering
+* __`helpers`__: An object which holds the helper functions used when rendering
   templates. This defaults to `handlebars.helpers`, and will merge any helpers
   specified during construction.
 
-* `layoutsDir = 'views/layouts/'`: The string path to the directory where the
-  layout templates reside.
+* __`layoutsDir = 'views/layouts/'`__: The string path to the directory where
+  the layout templates reside.
 
-* `partialsDir = 'views/partials/'`: The string path to the directory where the
-  partials templates reside.
+* __`partialsDir = 'views/partials/'`__: The string path to the directory where
+  the partials templates reside.
 
 ### Advanced Usage
 
@@ -155,7 +160,10 @@ app.set('view engine', 'handlebars');
 // Middleware to expose the app's partials when rendering the view.
 function exposeTemplates(req, res, next) {
     // Uses the `ExpressHandlebars` instance to get the precompiled partials.
-    hbs.getPartials({precompiled: true}, function (err, partials) {
+    hbs.getPartials({
+        cache      : app.enabled('view cache'),
+        precompiled: true
+    }, function (err, partials) {
         if (err) { return next(err); }
 
         var templates = [];
