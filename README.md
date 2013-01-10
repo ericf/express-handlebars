@@ -223,29 +223,29 @@ exphbs.create({ /* config */ });
 The following is the list of configuration properties and their default values
 (if any):
 
-##### `defaultLayout`
+#### `defaultLayout`
 The string name or path of a template in the `layoutsDir` to use as the default
 layout. This is overridden by a `layout` specified in the app or response
 `locals`. **Note:** A falsy value will render without a layout; e.g.,
 `res.render('home', {layout: false});`.
 
-##### `extname=".handlebars"`
+#### `extname=".handlebars"`
 The string name of the file extension used by the templates.
 
-##### `handlebars=require('handlebars')`
+#### `handlebars=require('handlebars')`
 The Handlebars module/implementation. This allows for the `ExpressHandlebars`
 instance to use a different Handlebars module/implementation than that provided
 by the Handlebars npm module.
 
-##### `helpers`
+#### `helpers`
 An object which holds the helper functions used when rendering templates. This
 defaults to `handlebars.helpers`, and will merge any helpers specified during
 construction.
 
-##### `layoutsDir="views/layouts/"`
+#### `layoutsDir="views/layouts/"`
 The string path to the directory where the layout templates reside.
 
-##### `partialsDir="views/partials/"`
+#### `partialsDir="views/partials/"`
 The string path to the directory where the partials templates reside.
 
 ### Properties
@@ -254,16 +254,16 @@ The public API properties are provided via `ExpressHandlebars` instances. In
 additional to the properties listed in the **Configuration and Defaults**
 section, the following are additional public properties:
 
-##### `compiled`
+#### `compiled`
 An object cache which holds compiled Handlebars template functions in the
 format: `{"path/to/template": [Function]}`.
 
-##### `engine`
+#### `engine`
 A function reference to the `renderView()` method which is bound to `this`
 `ExpressHandlebars` instance. This bound function should be used when
 registering this view engine with an Express app.
 
-##### `precompiled`
+#### `precompiled`
 An object cache which holds precompiled Handlebars template strings in the
 format: `{"path/to/template": [String]}`.
 
@@ -272,7 +272,7 @@ format: `{"path/to/template": [String]}`.
 The following is the list of public API methods provided via `ExpressHandlebars`
 instances:
 
-##### `getPartials(options|callback, [callback])`
+#### `getPartials(options|callback, [callback])`
 
 Retreives the partials in the `partialsDir` and passes an object mapping the
 partials in the form `{name: partial}` to the `callback`.
@@ -281,7 +281,7 @@ By default each partial will be a compiled Handlebars template function. Use
 `options.precompiled` to receive the partials as precompiled templates — this is
 useful for sharing templates with client code.
 
-###### Parameters:
+**Parameters:**
 
 * `[options]`: Optional object containing any of the following properties:
 
@@ -323,14 +323,14 @@ being prevented by a [Handlebars bug][]. Once this bug is fixed, a future
 version will use a "/" separator. Templates requiring the partial still use:
 `{{> foo/bar}}`.
 
-##### `getTemplate(filePath, [options|callback], [callback])`
+#### `getTemplate(filePath, [options|callback], [callback])`
 
 Retreives the template at the specified `filePath` and passes a compiled
 Handlebars template function to the `callback`.
 
 Use `options.precompiled` to receive a precompiled Handlebars template.
 
-###### Parameters:
+**Parameters:**
 
 * `filePath`: String path to the Handlebars template file.
 
@@ -344,7 +344,7 @@ Use `options.precompiled` to receive a precompiled Handlebars template.
 
 * `callback`: Function to call once the template is retrieved.
 
-##### `render(filePath, [options|callback], [callback])`
+#### `render(filePath, [options|callback], [callback])`
 
 Renders the template at the specified `filePath` using this instance's `helpers`
 and partials, and passes the resulting string to the `callback`.
@@ -353,7 +353,7 @@ The `options` will be used both as the context in which the Handlebars template
 is rendered, and to signal this view engine on how it should behave, e.g.,
 `options.cache = false` will load _always_ load the templates from disk.
 
-###### Parameters:
+**Parameters:**
 
 * `filePath`: String path to the Handlebars template file.
 
@@ -366,7 +366,7 @@ is rendered, and to signal this view engine on how it should behave, e.g.,
 
 * `callback`: Function to call once the template is retrieved.
 
-##### `renderView(viewPath, [options|callback], [callback])`
+#### `renderView(viewPath, [options|callback], [callback])`
 
 Renders the template at the specified `viewPath` as the `{{{body}}}` within the
 layout specified by the `defaultLayout` or `options.layout`. Rendering will use
@@ -381,7 +381,7 @@ The `options` will be used both as the context in which the Handlebars templates
 are rendered, and to signal this view engine on how it should behave, e.g.,
 `options.cache=false` will load _always_ load the templates from disk.
 
-###### Parameters:
+**Parameters:**
 
 * `viewPath`: String path to the Handlebars template file which should serve as
   the `{{{body}}}` when using a layout.
