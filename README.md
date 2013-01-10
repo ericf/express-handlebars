@@ -162,8 +162,8 @@ This module is smart about template caching. In development, templates will
 always be loaded from disk, i.e., no caching. In production, raw files and
 compiled Handlebars templates are aggressively cached.
 
-The easiest way to control template/view caching is through
-[Express' "view cache" setting](http://expressjs.com/api.html#app-settings):
+The easiest way to control template/view caching is through Express'
+[view cache setting][]:
 
 ```javascript
 app.enable('view cache');
@@ -182,8 +182,7 @@ This view engine can be configured as to where layouts are, by default it's set
 to `"views/layouts/"`.
 
 There are two ways to set a default layout: by configuring the view engine's
-`defaultLayout` property, or setting an
-[Express local](http://expressjs.com/api.html#app.locals)
+`defaultLayout` property, or setting [Express locals][]
 `app.locals.layout = "main"`.
 
 The layout a view should be rendered in can also be overridden per request, by
@@ -195,6 +194,9 @@ app.get('/', function (req, res, next) {
     res.render('home', {layout: false});
 });
 ```
+
+[view cache setting]: http://expressjs.com/api.html#app-settings
+[Express locals]: http://expressjs.com/api.html#app.locals
 
 
 API
@@ -301,9 +303,9 @@ hbs.getPartials(function (err, partials) {
 ```
 
 **Note:** The partial name `"foo.bar"` would ideally be `"foo/bar"`, but there
-is a [bug in Handlebars](https://github.com/wycats/handlebars.js/pull/389) that
-prevents this. Once this bug is fixed, a future version will use a "/"
-separator. Templates using the partial still use: `{{> foo/bar}}`.
+is a [Handlebars bug][] that prevents this. Once this bug is fixed, a future
+version will use a "/" separator. Templates using the partial still use:
+`{{> foo/bar}}`.
 
 ##### `getTemplate(filePath, [options|callback], [callback])`
 
@@ -380,6 +382,8 @@ are rendered, and to signal this view engine on how it should behave, e.g.,
     value will render with no layout (even if a `defaultLayout` is defined).
 
 * `callback`: Function to call once the template is retrieved.
+
+[Handlebars bug]: https://github.com/wycats/handlebars.js/pull/389
 
 
 Advanced Usage Example
