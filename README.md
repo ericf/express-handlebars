@@ -35,9 +35,10 @@ implemented. The following is that list:
 
 * All async and non-blocking. File system I/O is slow and servers should not be
   blocked from handling requests while reading from disk. I/O queuing is used to
-  avoid unnecessary I/O.
+  avoid doing unnecessary work.
 
-* Ability to expose precompiled partials to the client, for template sharing.
+* Ability to expose precompiled templates and partials to the client, enabling
+  template sharing and reuse.
 
 * Ability to use a different Handlebars module/implementation other than the
   Handlebars npm module.
@@ -48,7 +49,7 @@ This module was designed to work great for both the simple and complex use
 cases. I _intentionally_ made sure the full implementation is exposed and is
 easily overrideable.
 
-The module exports a function which can be invoked with no arguments or a
+The module exports a function which can be invoked with no arguments or with a
 `config` object and it will return a function (closed over sane defaults) which
 can be registered with an Express app. It's an engine factory function.
 
@@ -73,7 +74,9 @@ Installation
 
 Install using npm:
 
-    npm install express3-handlebars
+```shell
+$ npm install express3-handlebars
+```
 
 
 Usage
@@ -139,7 +142,7 @@ app.listen(3000);
 ### Using Instances
 
 Another way to use this module is to create an instance(s) of
-`ExpressHandlebars`, allowing access to the full API beyond basic configuration:
+`ExpressHandlebars`, allowing access to the full API:
 
 ```javascript
 var express = require('express'),
@@ -158,8 +161,8 @@ app.set('view engine', 'handlebars');
 
 ### Template Caching
 
-This module is smart about template caching. In development, templates will
-always be loaded from disk, i.e., no caching. In production, raw files and
+This module uses a smart template caching strategy. In development, templates
+will always be loaded from disk, i.e., no caching. In production, raw files and
 compiled Handlebars templates are aggressively cached.
 
 The easiest way to control template/view caching is through Express'
@@ -169,25 +172,24 @@ The easiest way to control template/view caching is through Express'
 app.enable('view cache');
 ```
 
-Express enables this setting by default in production mode, i.e.,
+Express enables this setting by default when in production mode, i.e.,
 `process.env.NODE_ENV === "production"`.
 
-Also, each of the public API methods accept `options.cache`, which you can set
-when calling these methods manually.
+**Note:** All of the public API methods accept `options.cache`, which gives
+control over caching when calling these methods directly.
 
 ### Layouts
 
 This module adds back the concept of "layout", which was removed in Express 3.x.
-This view engine can be configured as to where layouts are, by default it's set
-to `"views/layouts/"`.
+This view engine can be configured with a path to the layouts directory, by
+default it's set to `"views/layouts/"`.
 
-There are two ways to set a default layout: by configuring the view engine's
-`defaultLayout` property, or setting [Express locals][]
-`app.locals.layout = "main"`.
+There are two ways to set a default layout: configuring the view engine's
+`defaultLayout` property, or setting [Express locals][] `app.locals.layout`.
 
-The layout a view should be rendered in can also be overridden per request, by
-assigning a different value to the request local. The following will render the
-"home" view with no layout:
+The layout in which a view should be rendered can be overridden per-request by
+assigning a different value to the `layout` request local. The following will
+render the "home" view with no layout:
 
 ```javascript
 app.get('/', function (req, res, next) {
@@ -203,6 +205,20 @@ API
 ---
 
 ### Configuration and Defaults
+
+There are two main ways to use this module: via its engine factory function, or
+creating `ExpressHandlebars` instances; both use the same configuration
+properties and defaults.
+
+```javascript
+var exphbs = require('express3-handlebars');
+
+// Using the engine factory:
+exphbs({ /* config */ });
+
+// Create an instance:
+exphbs.create({ /* config */ });
+```
 
 The following is the list of configuration properties and their default values
 (if any):
@@ -258,11 +274,11 @@ instances:
 
 ##### `getPartials(options|callback, [callback])`
 
-Retreives the partials in the `partialsDir` and passes an object mapping
-`{name: partial}` for the partials to the `callback`.
+Retreives the partials in the `partialsDir` and passes an object mapping the
+partials in the form `{name: partial}` to the `callback`.
 
-By default each partial will be a compiled Handlebars template function. Use the
-`precompiled` option to receive the partials as precompiled templates — this is
+By default each partial will be a compiled Handlebars template function. Use
+`options.precompiled` to receive the partials as precompiled templates — this is
 useful for sharing templates with client code.
 
 ###### Parameters:
@@ -302,9 +318,9 @@ hbs.getPartials(function (err, partials) {
 });
 ```
 
-**Note:** The partial name `"foo.bar"` would ideally be `"foo/bar"`, but there
-is a [Handlebars bug][] that prevents this. Once this bug is fixed, a future
-version will use a "/" separator. Templates using the partial still use:
+**Note:** The partial name `"foo.bar"` would ideally be `"foo/bar"`, but this is
+being prevented by a [Handlebars bug][]. Once this bug is fixed, a future
+version will use a "/" separator. Templates requiring the partial still use:
 `{{> foo/bar}}`.
 
 ##### `getTemplate(filePath, [options|callback], [callback])`
@@ -312,7 +328,7 @@ version will use a "/" separator. Templates using the partial still use:
 Retreives the template at the specified `filePath` and passes a compiled
 Handlebars template function to the `callback`.
 
-Use the `precompiled` option to receive a precompiled Handlebars template.
+Use `options.precompiled` to receive a precompiled Handlebars template.
 
 ###### Parameters:
 
@@ -335,7 +351,7 @@ and partials, and passes the resulting string to the `callback`.
 
 The `options` will be used both as the context in which the Handlebars template
 is rendered, and to signal this view engine on how it should behave, e.g.,
-`options.cache=false` will load _always_ load the templates from disk.
+`options.cache = false` will load _always_ load the templates from disk.
 
 ###### Parameters:
 
@@ -358,8 +374,8 @@ this instance's `helpers` and partials, and passes the resulting string to the
 `callback`.
 
 This method is called by Express and is the main entry point into this Express
-view engine implementation. It adds the concept of a "layout" to rendering and
-delegates rendering to the `render()` method.
+view engine implementation. It adds the concept of a "layout" and delegates
+rendering to the `render()` method.
 
 The `options` will be used both as the context in which the Handlebars templates
 are rendered, and to signal this view engine on how it should behave, e.g.,
@@ -451,7 +467,10 @@ function exposeTemplates(req, res, next) {
         });
 
         // Exposes the partials during view rendering.
-        res.locals.templates = templates;
+        if (templates.length) {
+            res.locals.templates = templates;
+        }
+
         next();
     });
 }
@@ -465,8 +484,8 @@ app.listen(3000);
 
 #### views/layouts/main.handlebars:
 
-The `main` layout can then access these precompiled partials via the `templates`
-local, and render them like this:
+The layout can then access these precompiled partials via the `templates` local,
+and render them like this:
 
 ```handlebars
 <!doctype html>
@@ -495,12 +514,6 @@ local, and render them like this:
 
 </body>
 </html>
-```
-
-#### views/home.handlebars:
-
-```html
-<h1>Example App: Home</h1>
 ```
 
 
