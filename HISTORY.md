@@ -1,6 +1,14 @@
 Express3 Handlebars Change History
 ==================================
 
+NEXT
+----
+
+* Renamed methods prefixed with "get" to "load" for clarity:
+
+  * `getPartials()` -> `loadPartials()`
+  * `getTemplate()` -> `loadTemplate()`
+
 0.1.2 (2013-01-10)
 ------------------
 
