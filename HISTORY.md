@@ -1,6 +1,12 @@
 Express3 Handlebars Change History
 ==================================
 
+NEXT
+----
+
+* Force `{precompiled: false}` option within `render()` and `renderView()`
+  methods to prevent trying to render with precompiled templates.
+
 0.1.2 (2013-01-10)
 ------------------
 
