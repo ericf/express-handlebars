@@ -100,6 +100,9 @@ app's views. This makes it trivial to use this module in basic apps:
 
 #### app.js:
 
+Creates a super simple Express app which shows the basic way to register a
+Handlebars view engine using this module.
+
 ```javascript
 var express = require('express'),
     exphbs  = require('express3-handlebars'),
@@ -118,6 +121,10 @@ app.listen(3000);
 
 #### views/layouts/main.handlebars:
 
+The main layout is the HTML page wrapper which can be reused for the different
+views of the app. `{{{body}}}` is used as a placeholder for where the main
+content should be rendered.
+
 ```html
 <!doctype html>
 <html>
@@ -134,6 +141,9 @@ app.listen(3000);
 ```
 
 #### views/home.handlebars:
+
+The content for the app's home view which will be rendered into the layout's
+`{{{body}}}`.
 
 ```html
 <h1>Example App: Home</h1>
@@ -179,6 +189,9 @@ Express enables this setting by default when in production mode, i.e.,
 control over caching when calling these methods directly.
 
 ### Layouts
+
+A layout is simply a Handlebars template with a `{{{body}}}` placeholder.
+Usually it will be an HTML page wrapper in which views will be rendered.
 
 This module adds back the concept of "layout", which was removed in Express 3.x.
 This view engine can be configured with a path to the layouts directory, by
