@@ -1,6 +1,12 @@
 Express3 Handlebars Change History
 ==================================
 
+NEXT
+----
+
+* All paths are resolved before checking in or adding to caches.
+
+
 0.1.2 (2013-01-10)
 ------------------
 
