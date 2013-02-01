@@ -336,7 +336,7 @@ being prevented by a [Handlebars bug][]. Once this bug is fixed, a future
 version will use a "/" separator. Templates requiring the partial still use:
 `{{> foo/bar}}`.
 
-#### `getTemplate(filePath, [options|callback], [callback])`
+#### `getTemplate(filePath, options|callback, [callback])`
 
 Retreives the template at the specified `filePath` and passes a compiled
 Handlebars template function to the `callback`.
@@ -357,7 +357,7 @@ Use `options.precompiled` to receive a precompiled Handlebars template.
 
 * `callback`: Function to call once the template is retrieved.
 
-#### `render(filePath, [options|callback], [callback])`
+#### `render(filePath, options|callback, [callback])`
 
 Renders the template at the specified `filePath` using this instance's `helpers`
 and partials, and passes the resulting string to the `callback`.
@@ -379,7 +379,7 @@ is rendered, and to signal this view engine on how it should behave, e.g.,
 
 * `callback`: Function to call once the template is retrieved.
 
-#### `renderView(viewPath, [options|callback], [callback])`
+#### `renderView(viewPath, options|callback, [callback])`
 
 Renders the template at the specified `viewPath` as the `{{{body}}}` within the
 layout specified by the `defaultLayout` or `options.layout`. Rendering will use
