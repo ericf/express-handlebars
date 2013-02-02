@@ -1,18 +1,18 @@
 Express3 Handlebars Change History
 ==================================
 
-NEXT
-----
+0.2.0 (2013-02-01)
+------------------
 
-* Renamed methods prefixed with "get" to "load" for clarity:
+* Renamed methods prefixed with "get" to "load" for clarity. (Issue #5)
 
-  * `getPartials()` -> `loadPartials()`
-  * `getTemplate()` -> `loadTemplate()`
+    * `getPartials()` -> `loadPartials()`
+    * `getTemplate()` -> `loadTemplate()`
 
-* All paths are resolved before checking in or adding to caches.
+* All paths are resolved before checking in or adding to caches. (Issue #1)
 
 * Force `{precompiled: false}` option within `render()` and `renderView()`
-  methods to prevent trying to render with precompiled templates.
+  methods to prevent trying to render with precompiled templates. (Issue #2)
 
 
 0.1.2 (2013-01-10)
