@@ -10,7 +10,7 @@ Express3 Handlebars Change History
     * `getTemplate()` -> `loadTemplate()`
 
   Aliases for these methods have been created to maintain back-compat, but the
-  old method names are now deprectated will be removed in the future. (Issue #5)
+  old method names are now deprecated will be removed in the future. (Issue #5)
 
 * All paths are resolved before checking in or adding to caches. (Issue #1)
 
