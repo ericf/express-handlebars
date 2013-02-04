@@ -1,6 +1,18 @@
 Express3 Handlebars Change History
 ==================================
 
+0.2.1 (2013-02-04)
+------------------
+
+* `extname`, `layoutsDir`, and `partialsDir` property values will now reference
+  the values on the prototype unless an `ExpressHandlebars` instance is
+  constructed with config values for these properties.
+
+* Improved clarity of method implementations, and exposed more override "hooks"
+  via new private methods: `_getPartialName()`, `_renderTemplate()`, and
+  `_resolveLayoutPath()`.
+
+
 0.2.0 (2013-02-01)
 ------------------
 
