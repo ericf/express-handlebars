@@ -165,8 +165,8 @@ var express = require('express'),
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// ...still have a reference to `hbs`, which methods like `getPartials()` can be
-// called on.
+// ...still have a reference to `hbs`, on which methods like `loadPartials()`
+// can be called.
 ```
 
 ### Template Caching
@@ -285,7 +285,7 @@ format: `{"path/to/template": [String]}`.
 The following is the list of public API methods provided via `ExpressHandlebars`
 instances:
 
-#### `getPartials(options|callback, [callback])`
+#### `loadPartials(options|callback, [callback])`
 
 Retreives the partials in the `partialsDir` and passes an object mapping the
 partials in the form `{name: partial}` to the `callback`.
@@ -319,12 +319,12 @@ views
 2 directories, 2 files
 ```
 
-`getPartials()` would produce the following result:
+`loadPartials()` would produce the following result:
 
 ```javascript
 var hbs = require('express3-handlebars').create();
 
-hbs.getPartials(function (err, partials) {
+hbs.loadPartials(function (err, partials) {
     console.log(partials);
     // => { 'foo.bar': [Function],
     // =>    title: [Function] }
@@ -336,7 +336,7 @@ being prevented by a [Handlebars bug][]. Once this bug is fixed, a future
 version will use a "/" separator. Templates requiring the partial still use:
 `{{> foo/bar}}`.
 
-#### `getTemplate(filePath, options|callback, [callback])`
+#### `loadTemplate(filePath, options|callback, [callback])`
 
 Retreives the template at the specified `filePath` and passes a compiled
 Handlebars template function to the `callback`.
@@ -464,7 +464,7 @@ app.set('view engine', 'handlebars');
 // Middleware to expose the app's partials when rendering the view.
 function exposeTemplates(req, res, next) {
     // Uses the `ExpressHandlebars` instance to get the precompiled partials.
-    hbs.getPartials({
+    hbs.loadPartials({
         cache      : app.enabled('view cache'),
         precompiled: true
     }, function (err, partials) {
