@@ -1,6 +1,12 @@
 Express3 Handlebars Change History
 ==================================
 
+0.2.2 (2013-02-04)
+------------------
+
+* Updated README with the public method renames which happened v0.2.0.
+
+
 0.2.1 (2013-02-04)
 ------------------
 
