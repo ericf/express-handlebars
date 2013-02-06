@@ -202,9 +202,9 @@ default it's set to `"views/layouts/"`.
 There are two ways to set a default layout: configuring the view engine's
 `defaultLayout` property, or setting [Express locals][] `app.locals.layout`.
 
-The layout in which a view should be rendered can be overridden per-request by
-assigning a different value to the `layout` request local. The following will
-render the "home" view with no layout:
+The layout into which a view should be rendered can be overridden per-request
+by assigning a different value to the `layout` request local. The following 
+will render the "home" view with no layout:
 
 ```javascript
 app.get('/', function (req, res, next) {
