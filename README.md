@@ -193,7 +193,7 @@ control over caching when calling these methods directly.
 ### Layouts
 
 A layout is simply a Handlebars template with a `{{{body}}}` placeholder.
-Usually it will be an HTML page wrapper in which views will be rendered.
+Usually it will be an HTML page wrapper into which views will be rendered.
 
 This module adds back the concept of "layout", which was removed in Express 3.x.
 This view engine can be configured with a path to the layouts directory, by
