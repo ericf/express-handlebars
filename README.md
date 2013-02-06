@@ -85,7 +85,9 @@ Usage
 This module uses sane defaults that leverage the "Express-way" of structuring an
 app's views. This makes it trivial to use this module in basic apps:
 
-#### Directory Structure:
+#### Basic Usage
+
+**Directory Structure:**
 
 ```
 .
@@ -98,7 +100,7 @@ app's views. This makes it trivial to use this module in basic apps:
 2 directories, 3 files
 ```
 
-#### app.js:
+**app.js:**
 
 Creates a super simple Express app which shows the basic way to register a
 Handlebars view engine using this module.
@@ -119,7 +121,7 @@ app.get('/', function (req, res, next) {
 app.listen(3000);
 ```
 
-#### views/layouts/main.handlebars:
+**views/layouts/main.handlebars:**
 
 The main layout is the HTML page wrapper which can be reused for the different
 views of the app. `{{{body}}}` is used as a placeholder for where the main
@@ -140,7 +142,7 @@ content should be rendered.
 </html>
 ```
 
-#### views/home.handlebars:
+**views/home.handlebars:**
 
 The content for the app's home view which will be rendered into the layout's
 `{{{body}}}`.
@@ -423,7 +425,7 @@ instance-based, and more advanced usages can take advantage of this. The
 following example demonstrates how to use an `ExpressHandlebars` instance to
 share templates with the client:
 
-#### Directory Structure:
+**Directory Structure:**
 
 ```
 .
@@ -440,7 +442,7 @@ share templates with the client:
 2 directories, 3 files
 ```
 
-#### app.js:
+**app.js:**
 
 The Express app can be implemented to expose its partials through the use of
 route middleware:
@@ -495,7 +497,7 @@ app.get('/', exposeTemplates, function (req, res, next) {
 app.listen(3000);
 ```
 
-#### views/layouts/main.handlebars:
+**views/layouts/main.handlebars:**
 
 The layout can then access these precompiled partials via the `templates` local,
 and render them like this:
