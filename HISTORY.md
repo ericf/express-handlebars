@@ -1,6 +1,14 @@
 Express3 Handlebars Change History
 ==================================
 
+NEXT
+----
+
+* Added `handlebarsVersion` property which is the version number of `handlebars`
+  as a semver. This is used internally to branch on certain operations which
+  differ between Handlebars releases.
+
+
 0.2.3 (2013-02-13)
 ------------------
 
@@ -48,13 +56,13 @@ Express3 Handlebars Change History
 0.1.2 (2013-01-10)
 ------------------
 
-* Tweak formatting of README documentation.
+* Tweaked formatting of README documentation.
 
 
 0.1.1 (2013-01-10)
 ------------------
 
-* Add README documentation.
+* Added README documentation.
 
 
 0.1.0 (2013-01-07)

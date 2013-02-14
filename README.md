@@ -203,7 +203,7 @@ There are two ways to set a default layout: configuring the view engine's
 `defaultLayout` property, or setting [Express locals][] `app.locals.layout`.
 
 The layout into which a view should be rendered can be overridden per-request
-by assigning a different value to the `layout` request local. The following 
+by assigning a different value to the `layout` request local. The following
 will render the "home" view with no layout:
 
 ```javascript
@@ -272,6 +272,10 @@ section, the following are additional public properties:
 #### `compiled`
 An object cache which holds compiled Handlebars template functions in the
 format: `{"path/to/template": [Function]}`.
+
+#### `handlebarsVersion`
+The version number of `handlebars` as a semver. This is unsed internally to
+branch on certain operations which differ between Handlebars releases.
 
 #### `engine`
 A function reference to the `renderView()` method which is bound to `this`
