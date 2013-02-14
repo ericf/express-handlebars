@@ -1,6 +1,15 @@
 Express3 Handlebars Change History
 ==================================
 
+0.2.3 (2013-02-13)
+------------------
+
+* Fixed issue with naming nested partials when using the latest version of
+  Handlebars (1.0.rc.2). Previous versions require a hack to replace "/"s with
+  "."s in partial names, and the latest version of Handlebars fixes that bug.
+  This hack will only be applied to old versions of Handlebars. (Issue #9)
+
+
 0.2.2 (2013-02-04)
 ------------------
 
