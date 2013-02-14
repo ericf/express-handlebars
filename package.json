@@ -26,7 +26,8 @@
      "dependencies": {
         "async"     : "~0.1",
         "glob"      : "3.x",
-        "handlebars": "1.x"
+        "handlebars": "1.x",
+        "semver"    : "1.x"
     },
 
     "main": "index.js",
