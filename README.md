@@ -482,6 +482,9 @@ is rendered, and to signal this view engine on how it should behave, e.g.,
   * `[cache]`: Whether a cached template can be used if it have already been
     requested. This is recommended for production to avoid unnecessary file I/O.
 
+  * `[helpers]`: Render-level helpers should should be merged with (and will
+    override) instance and global helper functions.
+
 * `callback`: Function to call once the template is retrieved.
 
 #### `renderView(viewPath, options|callback, [callback])`
@@ -510,6 +513,9 @@ are rendered, and to signal this view engine on how it should behave, e.g.,
 
   * `[cache]`: Whether cached templates can be used if they have already been
     requested. This is recommended for production to avoid unnecessary file I/O.
+
+  * `[helpers]`: Render-level helpers should should be merged with (and will
+    override) instance and global helper functions.
 
   * `[layout]`: Optional string path to the Handlebars template file to be used
     as the "layout". This overrides any `defaultLayout` value. Passing a falsy
