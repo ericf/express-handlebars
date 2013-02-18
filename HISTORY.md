@@ -4,6 +4,14 @@ Express3 Handlebars Change History
 NEXT
 ----
 
+* Added support for render-level helpers, via `options.helpers`, to the
+  `render()` and `renderView()` methods. Handlebars' `registerHelper()` function
+  now works as expected and does not have to be called before the
+  `ExpressHandlebars` instance is created. Helpers are now merged from:
+  `handlebars.helpers` (global), `helpers` (instance), and `options.helpers`
+  (render-level) before a template is rendered; this provides flexibility at
+  all levels.
+
 * Added `handlebarsVersion` property which is the version number of `handlebars`
   as a semver. This is used internally to branch on certain operations which
   differ between Handlebars releases.
