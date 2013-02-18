@@ -233,7 +233,7 @@ The following example shows helpers being specified at each level:
 **app.js:**
 
 Creates a super simple Express app which shows the basic way to register
-`ExpressHandlebars` instance-level helpers.
+`ExpressHandlebars` instance-level helpers, and overide one at the render-level.
 
 ```javascript
 var express = require('express'),
@@ -268,6 +268,8 @@ app.listen(3000);
 ```
 
 **views/home.handlebars:**
+
+The app's home view which uses helper functions to help render the contents.
 
 ```html
 <!doctype html>
