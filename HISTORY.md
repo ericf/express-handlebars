@@ -1,8 +1,8 @@
 Express3 Handlebars Change History
 ==================================
 
-NEXT
-----
+0.3.0 (2013-02-18)
+------------------
 
 * Added support for render-level helpers, via `options.helpers`, to the
   `render()` and `renderView()` methods. Handlebars' `registerHelper()` function
