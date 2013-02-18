@@ -1,6 +1,13 @@
 Express3 Handlebars Change History
 ==================================
 
+0.3.1 (2013-02-18)
+------------------
+
+* Updated README with info about `options.helpers` for `render()` and
+  `renderView()` docs.
+
+
 0.3.0 (2013-02-18)
 ------------------
 
