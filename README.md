@@ -3,6 +3,7 @@ Express3 Handlebars
 
 A [Handlebars][] view engine for [Express][] which doesn't suck.
 
+
 [Express]: https://github.com/visionmedia/express
 [Handlebars]: https://github.com/wycats/handlebars.js
 
@@ -212,8 +213,101 @@ app.get('/', function (req, res, next) {
 });
 ```
 
+### Helpers
+
+Helper functions, or "helpers" are functions that can be
+[registered with Handlebars][] and can be called within a template. Helpers can
+be used for transforming output, iterating over data, etc. To keep with the
+spirit of *logic-less* templates, helpers are the place where logic should be
+defined.
+
+Handlebars ships with some [built-in helpers][], such as: `with`, `if`, `each`,
+etc. Most application will need to extend this set of helpers to include
+app-specific logic and transformations. Beyond defining global helpers on
+`Handlebars`, this module supports `ExpressHandlebars` instance-level helpers
+via the `helpers` configuration property, and render-level helpers via
+`options.helpers` when calling the `render()` and `renderView()` methods.
+
+The following example shows helpers being specified at each level:
+
+**app.js:**
+
+Creates a super simple Express app which shows the basic way to register
+`ExpressHandlebars` instance-level helpers.
+
+```javascript
+var express = require('express'),
+    exphbs  = require('express3-handlebars'),
+
+    app = express(),
+    hbs;
+
+hbs = exphbs.create({
+    // Specify helpers which are only registered on this instance.
+    helpers: {
+        foo: function () { return 'FOO!'; }
+        bar: function () { return 'BAR!'; }
+    }
+});
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.get('/', function (req, res, next) {
+    res.render('home', {
+        showTitle: true,
+
+        // Override `foo` helper only for this rendering.
+        helpers: {
+            foo: function () { return 'foo.'; }
+        }
+    });
+});
+
+app.listen(3000);
+```
+
+**views/home.handlebars:**
+
+```html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Example App - Home</title>
+</head>
+<body>
+
+    <!-- Uses built-in `if` helper. -->
+  {{#if showTitle}}
+    <h1>Home</h1>
+  {{/if}}
+
+    <!-- Calls `foo` helper, overridden at render-level. -->
+    <p>{{foo}}</p>
+
+    <!-- Calls `bar` helper, defined at instance-level. -->
+    <p>{{bar}}</p>
+
+</body>
+</html>
+```
+
+#### More on Helpers
+
+Refer to the [Handlebars website][] for more information on defining helpers:
+
+* [Expression Helpers][]
+* [Block Helpers][]
+
+
 [view cache setting]: http://expressjs.com/api.html#app-settings
 [Express locals]: http://expressjs.com/api.html#app.locals
+[registered with Handlebars]: https://github.com/wycats/handlebars.js/#registering-helpers
+[built-in helpers]: http://handlebarsjs.com/#builtins
+[Handlebars website]: http://handlebarsjs.com/
+[Expression Helpers]: http://handlebarsjs.com/expressions.html#helpers
+[Block Helpers]: http://handlebarsjs.com/block_helpers.html
 
 
 API
