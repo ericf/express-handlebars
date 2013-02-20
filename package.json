@@ -8,15 +8,19 @@
         "express", "express3", "handlebars", "view", "layout", "partials"
     ],
 
+    "author": {
+        "name" : "Eric Ferraiuolo",
+        "email": "eferraiuolo@gmail.com",
+        "url"  : "http://ericf.me/"
+    },
+
     "repository": {
         "type": "git",
         "url" : "git://github.com/ericf/express3-handlebars.git"
     },
 
-    "author": {
-        "name" : "Eric Ferraiuolo",
-        "email": "eferraiuolo@gmail.com",
-        "url"  : "http://ericf.me/"
+    "bugs": {
+        "url": "https://github.com/ericf/express3-handlebars/issues"
     },
 
     "engines": {
