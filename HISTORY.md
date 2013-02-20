@@ -1,6 +1,13 @@
 Express3 Handlebars Change History
 ==================================
 
+0.3.2 (2013-02-20)
+------------------
+
+* Transfered ownership and copyright to Yahoo! Inc. This software is still free
+  to use, and is now licensed under the Yahoo! Inc. BSD license.
+
+
 0.3.1 (2013-02-18)
 ------------------
 

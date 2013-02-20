@@ -1,7 +1,7 @@
 {
     "name"       : "express3-handlebars",
     "description": "A Handlebars view engine for Express which doesn't suck.",
-    "version"    : "0.3.1",
+    "version"    : "0.3.2",
     "homepage"   : "https://github.com/ericf/express3-handlebars",
 
     "keywords": [
