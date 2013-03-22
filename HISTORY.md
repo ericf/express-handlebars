@@ -1,6 +1,14 @@
 Express3 Handlebars Change History
 ==================================
 
+NEXT
+------------------
+
+* Updated internal `_resolveLayoutPath()` method to take the full
+  `options`/locals objects which the view is rendered with. This makes it easier
+  to override. (Issue #14)
+
+
 0.3.2 (2013-02-20)
 ------------------
 
