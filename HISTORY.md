@@ -1,7 +1,7 @@
 Express3 Handlebars Change History
 ==================================
 
-NEXT
+0.3.3 (2013-03-22)
 ------------------
 
 * Updated internal `_resolveLayoutPath()` method to take the full
