@@ -1,6 +1,13 @@
 Express3 Handlebars Change History
 ==================================
 
+NEXT
+------------------
+
+* Exposed `getHandlebarsSemver()` function as a static property on the
+  `ExpressHandlebars` constructor.
+
+
 0.3.3 (2013-03-22)
 ------------------
 

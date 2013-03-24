@@ -372,14 +372,14 @@ section, the following are additional public properties:
 An object cache which holds compiled Handlebars template functions in the
 format: `{"path/to/template": [Function]}`.
 
-#### `handlebarsVersion`
-The version number of `handlebars` as a semver. This is unsed internally to
-branch on certain operations which differ between Handlebars releases.
-
 #### `engine`
 A function reference to the `renderView()` method which is bound to `this`
 `ExpressHandlebars` instance. This bound function should be used when
 registering this view engine with an Express app.
+
+#### `handlebarsVersion`
+The version number of `handlebars` as a semver. This is unsed internally to
+branch on certain operations which differ between Handlebars releases.
 
 #### `precompiled`
 An object cache which holds precompiled Handlebars template strings in the
@@ -522,6 +522,20 @@ are rendered, and to signal this view engine on how it should behave, e.g.,
     value will render with no layout (even if a `defaultLayout` is defined).
 
 * `callback`: Function to call once the template is retrieved.
+
+### Statics
+
+The following is the list of static API properties and methods provided on the
+`ExpressHandlebars` constructor:
+
+#### `getHandlebarsSemver(handlebars)`
+
+Returns a semver-compatible version string for the specified `handlebars`
+module/implementation.
+
+This utility function is used to compute the value for an `ExpressHandlebars`
+instance's `handlebarsVersion` property.
+
 
 [Handlebars bug]: https://github.com/wycats/handlebars.js/pull/389
 
