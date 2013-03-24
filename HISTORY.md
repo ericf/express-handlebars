@@ -12,6 +12,8 @@ NEXT
 
   This is the future version where these aliases have been removed.
 
+* (!) Renamed `lib/express3-handlebars.js` -> `lib/express-handlebars.js`.
+
 * Exposed `getHandlebarsSemver()` function as a static property on the
   `ExpressHandlebars` constructor.
 
