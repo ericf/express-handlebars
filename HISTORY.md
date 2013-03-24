@@ -4,6 +4,14 @@ Express3 Handlebars Change History
 NEXT
 ------------------
 
+* (!) Removed the following "get" -> "load" aliases which kept in v0.2.0 for
+  back-compat:
+
+    * `getPartials()` -> `loadPartials()`
+    * `getTemplate()` -> `loadTemplate()`
+
+  This is the future version where these aliases have been removed.
+
 * Exposed `getHandlebarsSemver()` function as a static property on the
   `ExpressHandlebars` constructor.
 
@@ -76,7 +84,7 @@ NEXT
 0.2.0 (2013-02-01)
 ------------------
 
-* Renamed methods prefixed with "get" to "load" for clarity:
+* (!) Renamed methods prefixed with "get" to "load" for clarity:
 
     * `getPartials()` -> `loadPartials()`
     * `getTemplate()` -> `loadTemplate()`
