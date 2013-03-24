@@ -15,6 +15,10 @@ NEXT
 * Exposed `getHandlebarsSemver()` function as a static property on the
   `ExpressHandlebars` constructor.
 
+* Rearranged module exports by moving the engine factory function to `index.js`,
+  making the `lib/express3-handlebars.js` module only responsible for exporting
+  the `ExpressHandlebars` constructor.
+
 
 0.3.3 (2013-03-22)
 ------------------

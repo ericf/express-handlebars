@@ -1,1 +1,13 @@
-module.exports = require('./lib/express3-handlebars');
+var ExpressHandlebars = require('./lib/express3-handlebars');
+
+function exphbs(config) {
+    return exphbs.create(config).engine;
+}
+
+exphbs.create = function (config) {
+    return new ExpressHandlebars(config);
+};
+
+exphbs.ExpressHandlebars = ExpressHandlebars;
+
+module.exports = exphbs;
