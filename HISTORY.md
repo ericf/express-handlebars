@@ -1,7 +1,7 @@
 Express3 Handlebars Change History
 ==================================
 
-NEXT
+0.4.0 (2013-03-24)
 ------------------
 
 * (!) Removed the following "get" -> "load" aliases which kept in v0.2.0 for
