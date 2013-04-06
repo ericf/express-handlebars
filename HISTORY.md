@@ -1,6 +1,12 @@
 Express3 Handlebars Change History
 ==================================
 
+0.4.1 (2013-04-06)
+------------------
+
+* Updated `async` dependency to the latest stable minor version: "~0.2".
+
+
 0.4.0 (2013-03-24)
 ------------------
 
