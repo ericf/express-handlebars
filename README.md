@@ -3,9 +3,12 @@ Express3 Handlebars
 
 A [Handlebars][] view engine for [Express][] which doesn't suck.
 
+[![Dependency Status](https://david-dm.org/ericf/express3-handlebars.png)][status]
+
 
 [Express]: https://github.com/visionmedia/express
 [Handlebars]: https://github.com/wycats/handlebars.js
+[status]: https://david-dm.org/ericf/express3-handlebars
 
 
 Goals & Design
