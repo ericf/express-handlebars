@@ -395,7 +395,7 @@ instances:
 
 #### `loadPartials(options|callback, [callback])`
 
-Retreives the partials in the `partialsDir` and passes an object mapping the
+Retrieves the partials in the `partialsDir` and passes an object mapping the
 partials in the form `{name: partial}` to the `callback`.
 
 By default each partial will be a compiled Handlebars template function. Use
@@ -446,7 +446,7 @@ version will use a "/" separator. Templates requiring the partial still use:
 
 #### `loadTemplate(filePath, options|callback, [callback])`
 
-Retreives the template at the specified `filePath` and passes a compiled
+Retrieves the template at the specified `filePath` and passes a compiled
 Handlebars template function to the `callback`.
 
 Use `options.precompiled` to receive a precompiled Handlebars template.
@@ -464,6 +464,29 @@ Use `options.precompiled` to receive a precompiled Handlebars template.
     instead of a compiled Handlebars template function.
 
 * `callback`: Function to call once the template is retrieved.
+
+#### `loadTemplates(dirPath, options|callback, [callback])`
+
+Retrieves the all the templates in the specified `dirPath` and passes an object
+mapping the compiled templates in the form `{filename: template}` to the
+`callback`.
+
+Use `options.precompiled` to receive precompiled Handlebars templates — this is
+useful for sharing templates with client code.
+
+**Parameters:**
+
+* `dirPath`: String path to the directory containing Handlebars template files.
+
+* `[options]`: Optional object containing any of the following properties:
+
+  * `[cache]`: Whether cached templates can be used if it have already been
+    requested. This is recommended for production to avoid necessary file I/O.
+
+  * `[precompiled=false]`: Whether precompiled templates should be provided,
+    instead of a compiled Handlebars template function.
+
+* `callback`: Function to call once the templates are retrieved.
 
 #### `render(filePath, options|callback, [callback])`
 
