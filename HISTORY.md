@@ -7,6 +7,14 @@ NEXT
 * Added `loadTemplates()` method which will load all the templates in a
   specified directory.
 
+* Added support for multiple partials directories. This enables the
+  `partialsDir` configuration property to be specified as an *array* of
+  directories, and loads all of the templates in each one.
+
+  This feature allows an app's partials to be split up in multiple directories,
+  which is common if an app has some shared partials which will also be exposed
+  to the client, and some server-side-only partials.
+
 
 0.4.1 (2013-04-06)
 ------------------
