@@ -1,6 +1,6 @@
 var express = require('express'),
     exphbs  = require('../../'), // "express3-handlebars"
-    helpers = require('./helpers'),
+    helpers = require('./lib/helpers'),
 
     app = express(),
     hbs;
