@@ -45,15 +45,15 @@ implemented. The following is that list:
   template sharing and reuse.
 
 * Ability to use a different Handlebars module/implementation other than the
-  Handlebars npm module.
+  Handlebars npm package.
 
-### Module Design
+### Package Design
 
-This module was designed to work great for both the simple and complex use
+This package was designed to work great for both the simple and complex use
 cases. I _intentionally_ made sure the full implementation is exposed and is
 easily overrideable.
 
-The module exports a function which can be invoked with no arguments or with a
+The package exports a function which can be invoked with no arguments or with a
 `config` object and it will return a function (closed over sane defaults) which
 can be registered with an Express app. It's an engine factory function.
 
@@ -86,8 +86,8 @@ $ npm install express3-handlebars
 Usage
 -----
 
-This module uses sane defaults that leverage the "Express-way" of structuring an
-app's views. This makes it trivial to use this module in basic apps:
+This view engine uses sane defaults that leverage the "Express-way" of
+structuring an app's views. This makes it trivial to use in basic apps:
 
 #### Basic Usage
 
@@ -107,7 +107,7 @@ app's views. This makes it trivial to use this module in basic apps:
 **app.js:**
 
 Creates a super simple Express app which shows the basic way to register a
-Handlebars view engine using this module.
+Handlebars view engine using this package.
 
 ```javascript
 var express = require('express'),
@@ -157,7 +157,7 @@ The content for the app's home view which will be rendered into the layout's
 
 ### Using Instances
 
-Another way to use this module is to create an instance(s) of
+Another way to use this view engine is to create an instance(s) of
 `ExpressHandlebars`, allowing access to the full API:
 
 ```javascript
@@ -177,9 +177,9 @@ app.set('view engine', 'handlebars');
 
 ### Template Caching
 
-This module uses a smart template caching strategy. In development, templates
-will always be loaded from disk, i.e., no caching. In production, raw files and
-compiled Handlebars templates are aggressively cached.
+This view engine uses a smart template caching strategy. In development,
+templates will always be loaded from disk, i.e., no caching. In production, raw
+files and compiled Handlebars templates are aggressively cached.
 
 The easiest way to control template/view caching is through Express'
 [view cache setting][]:
@@ -199,9 +199,9 @@ control over caching when calling these methods directly.
 A layout is simply a Handlebars template with a `{{{body}}}` placeholder.
 Usually it will be an HTML page wrapper into which views will be rendered.
 
-This module adds back the concept of "layout", which was removed in Express 3.x.
-This view engine can be configured with a path to the layouts directory, by
-default it's set to `"views/layouts/"`.
+This view engine adds back the concept of "layout", which was removed in Express
+3.x. It can be configured with a path to the layouts directory, by default it's
+set to `"views/layouts/"`.
 
 There are two ways to set a default layout: configuring the view engine's
 `defaultLayout` property, or setting [Express locals][] `app.locals.layout`.
@@ -227,8 +227,8 @@ defined.
 Handlebars ships with some [built-in helpers][], such as: `with`, `if`, `each`,
 etc. Most application will need to extend this set of helpers to include
 app-specific logic and transformations. Beyond defining global helpers on
-`Handlebars`, this module supports `ExpressHandlebars` instance-level helpers
-via the `helpers` configuration property, and render-level helpers via
+`Handlebars`, this view engine supports `ExpressHandlebars` instance-level
+helpers via the `helpers` configuration property, and render-level helpers via
 `options.helpers` when calling the `render()` and `renderView()` methods.
 
 The following example shows helpers being specified at each level:
@@ -320,7 +320,7 @@ API
 
 ### Configuration and Defaults
 
-There are two main ways to use this module: via its engine factory function, or
+There are two main ways to use this package: via its engine factory function, or
 creating `ExpressHandlebars` instances; both use the same configuration
 properties and defaults.
 
@@ -349,7 +349,7 @@ The string name of the file extension used by the templates.
 #### `handlebars=require('handlebars')`
 The Handlebars module/implementation. This allows for the `ExpressHandlebars`
 instance to use a different Handlebars module/implementation than that provided
-by the Handlebars npm module.
+by the Handlebars npm package.
 
 #### `helpers`
 An object which holds the helper functions used when rendering templates with
@@ -569,7 +569,7 @@ instance's `handlebarsVersion` property.
 Advanced Usage Example
 ----------------------
 
-As noted in the **Module Design** section, this module's implementation is
+As noted in the **Package Design** section, this view engine's implementation is
 instance-based, and more advanced usages can take advantage of this. The
 following example demonstrates how to use an `ExpressHandlebars` instance to
 share templates with the client:
