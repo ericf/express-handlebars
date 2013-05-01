@@ -89,7 +89,7 @@ Usage
 This view engine uses sane defaults that leverage the "Express-way" of
 structuring an app's views. This makes it trivial to use in basic apps:
 
-#### Basic Usage
+### Basic Usage
 
 **Directory Structure:**
 
@@ -118,7 +118,7 @@ var express = require('express'),
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-app.get('/', function (req, res, next) {
+app.get('/', function (req, res) {
     res.render('home');
 });
 
@@ -155,6 +155,15 @@ The content for the app's home view which will be rendered into the layout's
 <h1>Example App: Home</h1>
 ```
 
+#### Running the Example
+
+The above example is bundled in this package's [examples directory][], where
+it can be run by:
+
+```shell
+$ cd examples/basic/ && node app
+```
+
 ### Using Instances
 
 Another way to use this view engine is to create an instance(s) of
@@ -174,6 +183,9 @@ app.set('view engine', 'handlebars');
 // ...still have a reference to `hbs`, on which methods like `loadPartials()`
 // can be called.
 ```
+
+**Note:** The [Advanced Usage][] example demonstrates how `ExpressHandlebars`
+instances can be leveraged.
 
 ### Template Caching
 
@@ -236,7 +248,8 @@ The following example shows helpers being specified at each level:
 **app.js:**
 
 Creates a super simple Express app which shows the basic way to register
-`ExpressHandlebars` instance-level helpers, and overide one at the render-level.
+`ExpressHandlebars` instance-level helpers, and override one at the
+render-level.
 
 ```javascript
 var express = require('express'),
@@ -306,6 +319,7 @@ Refer to the [Handlebars website][] for more information on defining helpers:
 * [Block Helpers][]
 
 
+[examples directory]: https://github.com/ericf/express3-handlebars/tree/master/examples
 [view cache setting]: http://expressjs.com/api.html#app-settings
 [Express locals]: http://expressjs.com/api.html#app.locals
 [registered with Handlebars]: https://github.com/wycats/handlebars.js/#registering-helpers
@@ -566,119 +580,26 @@ instance's `handlebarsVersion` property.
 [Handlebars bug]: https://github.com/wycats/handlebars.js/pull/389
 
 
-Advanced Usage Example
-----------------------
+Examples
+--------
+
+### [Basic Usage][]
+
+This example shows the most basic way to use this view engine.
+
+### [Advanced Usage][]
+
+This example is more comprehensive and shows how to use many of the features of
+this view engine, including helpers, partials, multiple layouts, etc.
 
 As noted in the **Package Design** section, this view engine's implementation is
 instance-based, and more advanced usages can take advantage of this. The
-following example demonstrates how to use an `ExpressHandlebars` instance to
-share templates with the client:
+Advanced Usage example demonstrates how to use an `ExpressHandlebars` instance
+to share templates with the client, among other features.
 
-**Directory Structure:**
 
-```
-.
-├── app.js
-└── views
-    ├── home.handlebars
-    └── layouts
-    │   └── main.handlebars
-    └── partials
-        ├── foo
-        │   └── bar.handlebars
-        └── title.handlebars
-
-2 directories, 3 files
-```
-
-**app.js:**
-
-The Express app can be implemented to expose its partials through the use of
-route middleware:
-
-```javascript
-var express = require('express'),
-    exphbs  = require('express3-handlebars'),
-
-    app = express(),
-    hbs;
-
-// Create `ExpressHandlebars` instance with a default layout.
-hbs = exphbs.create({
-    defaultLayout: 'main'
-});
-
-// Register `hbs` as our view engine using its bound `engine()` function.
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-
-// Middleware to expose the app's partials when rendering the view.
-function exposeTemplates(req, res, next) {
-    // Uses the `ExpressHandlebars` instance to get the precompiled partials.
-    hbs.loadPartials({
-        cache      : app.enabled('view cache'),
-        precompiled: true
-    }, function (err, partials) {
-        if (err) { return next(err); }
-
-        var templates = [];
-
-        Object.keys(partials).forEach(function (name) {
-            templates.push({
-                name    : name,
-                template: partials[name]
-            });
-        });
-
-        // Exposes the partials during view rendering.
-        if (templates.length) {
-            res.locals.templates = templates;
-        }
-
-        next();
-    });
-}
-
-app.get('/', exposeTemplates, function (req, res, next) {
-    res.render('home');
-});
-
-app.listen(3000);
-```
-
-**views/layouts/main.handlebars:**
-
-The layout can then access these precompiled partials via the `templates` local,
-and render them like this:
-
-```handlebars
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Example App</title>
-</head>
-<body>
-
-    {{{body}}}
-
-  {{#if templates}}
-    <script src="/libs/handlebars.runtime.js"></script>
-    <script>
-        (function () {
-            var template  = Handlebars.template,
-                templates = Handlebars.templates = Handlebars.templates || {};
-
-          {{#templates}}
-            templates['{{{name}}}'] = template({{{template}}});
-          {{/templates}}
-        }());
-    </script>
-  {{/if}}
-
-</body>
-</html>
-```
+[Basic Usage]: https://github.com/ericf/express3-handlebars/tree/master/examples/basic
+[Advanced Usage]: https://github.com/ericf/express3-handlebars/tree/master/examples/advanced
 
 
 License

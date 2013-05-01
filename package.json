@@ -34,6 +34,10 @@
         "semver"    : "1.x"
     },
 
+    "devDependencies": {
+        "express": "3.x"
+    },
+
     "main": "index.js",
 
     "directories": {"lib": "./lib"}

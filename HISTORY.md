@@ -15,6 +15,8 @@ NEXT
   which is common if an app has some shared partials which will also be exposed
   to the client, and some server-side-only partials.
 
+* Added runnable code examples in this package's "examples/" directory.
+
 
 0.4.1 (2013-04-06)
 ------------------
