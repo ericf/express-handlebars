@@ -31,7 +31,7 @@
         "async"     : "~0.2",
         "glob"      : "3.x",
         "handlebars": "1.x",
-        "semver"    : "1.x"
+        "semver"    : "2.x"
     },
 
     "devDependencies": {
