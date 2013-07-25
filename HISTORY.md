@@ -17,6 +17,10 @@ NEXT
 
 * Added runnable code examples in this package's "examples/" directory.
 
+* Improved optional argument handling in public methods to treat Express
+  `locals` function objects as `options` and not `callback` params to the method
+  being invoked.
+
 
 0.4.1 (2013-04-06)
 ------------------
