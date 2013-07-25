@@ -5,7 +5,7 @@ Express3 Handlebars Change History
 ------------------
 
 * Added `loadTemplates()` method which will load all the templates in a
-  specified directory.
+  specified directory. ([#21][])
 
 * Added support for multiple partials directories. This enables the
   `partialsDir` configuration property to be specified as an *array* of
@@ -13,13 +13,20 @@ Express3 Handlebars Change History
 
   This feature allows an app's partials to be split up in multiple directories,
   which is common if an app has some shared partials which will also be exposed
-  to the client, and some server-side-only partials.
+  to the client, and some server-side-only partials. ([#20][])
 
 * Added runnable code examples in this package's "examples/" directory.
+  ([#22][])
 
 * Improved optional argument handling in public methods to treat Express
   `locals` function objects as `options` and not `callback` params to the method
-  being invoked.
+  being invoked. ([#27][])
+
+
+[#20]: https://github.com/ericf/express3-handlebars/issues/20
+[#21]: https://github.com/ericf/express3-handlebars/issues/21
+[#22]: https://github.com/ericf/express3-handlebars/issues/22
+[#27]: https://github.com/ericf/express3-handlebars/issues/27
 
 
 0.4.1 (2013-04-06)
@@ -54,7 +61,10 @@ Express3 Handlebars Change History
 
 * Updated internal `_resolveLayoutPath()` method to take the full
   `options`/locals objects which the view is rendered with. This makes it easier
-  to override. (Issue #14)
+  to override. ([#14][])
+
+
+[#14]: https://github.com/ericf/express3-handlebars/issues/14
 
 
 0.3.2 (2013-02-20)
@@ -68,7 +78,10 @@ Express3 Handlebars Change History
 ------------------
 
 * Updated README with info about `options.helpers` for `render()` and
-  `renderView()` docs.
+  `renderView()` docs. ([#7][])
+
+
+[#7]: https://github.com/ericf/express3-handlebars/issues/7
 
 
 0.3.0 (2013-02-18)
@@ -80,11 +93,15 @@ Express3 Handlebars Change History
   `ExpressHandlebars` instance is created. Helpers are now merged from:
   `handlebars.helpers` (global), `helpers` (instance), and `options.helpers`
   (render-level) before a template is rendered; this provides flexibility at
-  all levels.
+  all levels. ([#3][], [#11][])
 
 * Added `handlebarsVersion` property which is the version number of `handlebars`
   as a semver. This is used internally to branch on certain operations which
   differ between Handlebars releases.
+
+
+[#3]: https://github.com/ericf/express3-handlebars/issues/3
+[#11]: https://github.com/ericf/express3-handlebars/issues/11
 
 
 0.2.3 (2013-02-13)
@@ -93,7 +110,10 @@ Express3 Handlebars Change History
 * Fixed issue with naming nested partials when using the latest version of
   Handlebars (1.0.rc.2). Previous versions require a hack to replace "/"s with
   "."s in partial names, and the latest version of Handlebars fixes that bug.
-  This hack will only be applied to old versions of Handlebars. (Issue #9)
+  This hack will only be applied to old versions of Handlebars. ([#9][])
+
+
+[#9]: https://github.com/ericf/express3-handlebars/issues/9
 
 
 0.2.2 (2013-02-04)
@@ -123,12 +143,17 @@ Express3 Handlebars Change History
     * `getTemplate()` -> `loadTemplate()`
 
   Aliases for these methods have been created to maintain back-compat, but the
-  old method names are now deprecated will be removed in the future. (Issue #5)
+  old method names are now deprecated will be removed in the future. ([#5][])
 
-* All paths are resolved before checking in or adding to caches. (Issue #1)
+* All paths are resolved before checking in or adding to caches. ([#1][])
 
 * Force `{precompiled: false}` option within `render()` and `renderView()`
-  methods to prevent trying to render with precompiled templates. (Issue #2)
+  methods to prevent trying to render with precompiled templates. ([#2][])
+
+
+[#1]: https://github.com/ericf/express3-handlebars/issues/1
+[#2]: https://github.com/ericf/express3-handlebars/issues/2
+[#5]: https://github.com/ericf/express3-handlebars/issues/5
 
 
 0.1.2 (2013-01-10)
