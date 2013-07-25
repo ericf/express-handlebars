@@ -1,8 +1,8 @@
 Express3 Handlebars Change History
 ==================================
 
-NEXT
-----
+0.5.0 (2013-07-25)
+------------------
 
 * Added `loadTemplates()` method which will load all the templates in a
   specified directory.
