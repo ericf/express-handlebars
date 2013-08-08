@@ -360,6 +360,15 @@ layout. This is overridden by a `layout` specified in the app or response
 #### `extname=".handlebars"`
 The string name of the file extension used by the templates.
 
+If you change this from the default, you also need to change the ext first argument when registering the view engine with app.engine():
+
+    app.engine('hbs', exphbs({ extname: '.hbs'} ) );
+
+Also, be sure to use that same extname when setting the default "view engine" setting:
+
+    app.set('view engine', 'html');
+
+
 #### `handlebars=require('handlebars')`
 The Handlebars module/implementation. This allows for the `ExpressHandlebars`
 instance to use a different Handlebars module/implementation than that provided
