@@ -358,16 +358,25 @@ layout. This is overridden by a `layout` specified in the app or response
 `res.render('home', {layout: false});`.
 
 #### `extname=".handlebars"`
-The string name of the file extension used by the templates.
+The string name of the file extension used by the templates. This value should
+correspond with the `extname` under which this view engine is registered with
+Express when calling `app.engine()`.
 
-If you change this from the default, you also need to change the ext (first argument) when registering the view engine with [app.engine](http://expressjs.com/api.html#app.engine)():
+The following example sets up an Express app to use `.hbs` as the file extension
+for views:
 
-    app.engine('hbs', exphbs({ extname: '.hbs'} ) );
+```javascript
+var express = require('express'),
+    exphbs  = require('express3-handlebars'),
 
-Also, be sure to use that same extname when setting the default "[view engine](http://expressjs.com/api.html#app-settings)" setting:
+    app = express();
 
-    app.set('view engine', 'hbs');
+app.engine('.hbs', exphbs({extname: '.hbs'}));
+app.set('view engine', '.hbs');
+```
 
+**Note:** Setting the app's `"view engine"` setting will make that value the
+default file extension used for looking up views.
 
 #### `handlebars=require('handlebars')`
 The Handlebars module/implementation. This allows for the `ExpressHandlebars`
