@@ -261,7 +261,7 @@ var express = require('express'),
 hbs = exphbs.create({
     // Specify helpers which are only registered on this instance.
     helpers: {
-        foo: function () { return 'FOO!'; }
+        foo: function () { return 'FOO!'; },
         bar: function () { return 'BAR!'; }
     }
 });
