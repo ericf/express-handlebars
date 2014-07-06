@@ -27,12 +27,10 @@ app.set('view engine', 'handlebars');
 function exposeTemplates(req, res, next) {
     // Uses the `ExpressHandlebars` instance to get the get the **precompiled**
     // templates which will be shared with the client-side of the app.
-    hbs.loadTemplates('shared/templates/', {
+    hbs.getTemplates('shared/templates/', {
         cache      : app.enabled('view cache'),
         precompiled: true
-    }, function (err, templates) {
-        if (err) { return next(err); }
-
+    }).then(function (templates) {
         // RegExp to remove the ".handlebars" extension from the template names.
         var extRegex = new RegExp(hbs.extname + '$');
 
@@ -51,7 +49,8 @@ function exposeTemplates(req, res, next) {
         }
 
         next();
-    });
+    })
+    .catch(next);
 }
 
 app.get('/', function (req, res) {

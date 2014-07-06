@@ -1,44 +1,42 @@
 {
-    "name"       : "express3-handlebars",
-    "description": "A Handlebars view engine for Express which doesn't suck.",
-    "version"    : "0.5.0",
-    "homepage"   : "https://github.com/ericf/express3-handlebars",
-
-    "keywords": [
-        "express", "express3", "handlebars", "view", "layout", "partials"
-    ],
-
-    "author": {
-        "name" : "Eric Ferraiuolo",
-        "email": "eferraiuolo@gmail.com",
-        "url"  : "http://ericf.me/"
-    },
-
-    "repository": {
-        "type": "git",
-        "url" : "git://github.com/ericf/express3-handlebars.git"
-    },
-
-    "bugs": {
-        "url": "https://github.com/ericf/express3-handlebars/issues"
-    },
-
-    "engines": {
-        "node": ">=0.8"
-    },
-
-     "dependencies": {
-        "async"     : "~0.2",
-        "glob"      : "3.x",
-        "handlebars": "1.x",
-        "semver"    : "2.x"
-    },
-
-    "devDependencies": {
-        "express": "3.x"
-    },
-
-    "main": "index.js",
-
-    "directories": {"lib": "./lib"}
+  "name": "express3-handlebars",
+  "description": "A Handlebars view engine for Express which doesn't suck.",
+  "version": "0.5.0",
+  "homepage": "https://github.com/ericf/express3-handlebars",
+  "keywords": [
+    "express",
+    "express3",
+    "handlebars",
+    "view",
+    "layout",
+    "partials"
+  ],
+  "author": {
+    "name": "Eric Ferraiuolo",
+    "email": "eferraiuolo@gmail.com",
+    "url": "http://ericf.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ericf/express3-handlebars.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ericf/express3-handlebars/issues"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "dependencies": {
+    "glob": "^4.0.3",
+    "handlebars": "^2.0.0-alpha.4",
+    "promise": "^5.0.0",
+    "semver": "2.x"
+  },
+  "devDependencies": {
+    "express": "3.x"
+  },
+  "main": "index.js",
+  "directories": {
+    "lib": "./lib"
+  }
 }
