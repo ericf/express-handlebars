@@ -1,12 +1,11 @@
 var express = require('express'),
     exphbs  = require('../../'), // "express3-handlebars"
-    helpers = require('./lib/helpers'),
+    helpers = require('./lib/helpers');
 
-    app = express(),
-    hbs;
+var app = express();
 
 // Create `ExpressHandlebars` instance with a default layout.
-hbs = exphbs.create({
+var hbs = exphbs.create({
     defaultLayout: 'main',
     helpers      : helpers,
 
@@ -48,7 +47,7 @@ function exposeTemplates(req, res, next) {
             res.locals.templates = templates;
         }
 
-        next();
+        setImmediate(next);
     })
     .catch(next);
 }
@@ -93,6 +92,7 @@ app.get('/echo/:message?', exposeTemplates, function (req, res) {
 });
 
 app.use(express.static('public/'));
-app.listen(3000);
 
-console.log('express3-handlebars example server listening on: 3000');
+app.listen(3000, function () {
+    console.log('express3-handlebars example server listening on: 3000');
+});
