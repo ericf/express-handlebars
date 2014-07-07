@@ -1,0 +1,16 @@
+{
+  "name": "express3-handlebars-basic-example",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Eric Ferraiuolo <eferraiuolo@gmail.com>",
+  "license": "BSD",
+  "dependencies": {
+    "express": "^4.5.0"
+  }
+}

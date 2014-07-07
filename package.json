@@ -30,10 +30,7 @@
     "glob": "^4.0.3",
     "handlebars": "^2.0.0-alpha.4",
     "promise": "^5.0.0",
-    "semver": "2.x"
-  },
-  "devDependencies": {
-    "express": "3.x"
+    "semver": "^2.3.1"
   },
   "main": "index.js",
   "directories": {
