@@ -31,7 +31,7 @@
     "graceful-fs": "^3.0.2",
     "handlebars": "^2.0.0-alpha.4",
     "promise": "^5.0.0",
-    "semver": "^2.3.1"
+    "semver": "^3.0.1"
   },
   "main": "index.js",
   "directories": {
