@@ -2,8 +2,7 @@
 
 var ExpressHandlebars = require('./lib/express-handlebars');
 
-exports = module.exports = exphbs;
-
+exports = module.exports  = exphbs;
 exports.create            = create;
 exports.ExpressHandlebars = ExpressHandlebars;
 
