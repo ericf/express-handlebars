@@ -1,3 +1,6 @@
+/* global Handlebars, prompt */
+'use strict';
+
 // The client-side "app" which leverages the shared Handlebars "echo" template.
 // This will prompt the user for a message, then echo it out by rendering the
 // message using the shared template which was exposed by the server.

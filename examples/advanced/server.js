@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express'),
     exphbs  = require('../../'), // "express3-handlebars"
     helpers = require('./lib/helpers');
