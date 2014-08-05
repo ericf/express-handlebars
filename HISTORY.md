@@ -1,6 +1,21 @@
 Express3 Handlebars Change History
 ==================================
 
+0.5.1 (2014-08-05)
+------------------
+
+* __[!]__ Last release before `v1.0` which will have breaking changes.
+
+* Improved `extname` docs in README and added example. ([#30][] @Crashthatch)
+
+* `extname` can now be specified _without_ the leading `"."`.
+  ([#51][] @calvinmetcalf)
+
+
+[#30]: https://github.com/ericf/express3-handlebars/issues/30
+[#51]: https://github.com/ericf/express3-handlebars/issues/51
+
+
 0.5.0 (2013-07-25)
 ------------------
 
@@ -38,7 +53,7 @@ Express3 Handlebars Change History
 0.4.0 (2013-03-24)
 ------------------
 
-* (!) Removed the following "get" -> "load" aliases which kept in v0.2.0 for
+* __[!]__ Removed the following "get" -> "load" aliases which kept in v0.2.0 for
   back-compat:
 
     * `getPartials()` -> `loadPartials()`
@@ -46,7 +61,7 @@ Express3 Handlebars Change History
 
   This is the future version where these aliases have been removed.
 
-* (!) Renamed `lib/express3-handlebars.js` -> `lib/express-handlebars.js`.
+* __[!]__ Renamed `lib/express3-handlebars.js` -> `lib/express-handlebars.js`.
 
 * Exposed `getHandlebarsSemver()` function as a static property on the
   `ExpressHandlebars` constructor.
@@ -137,7 +152,7 @@ Express3 Handlebars Change History
 0.2.0 (2013-02-01)
 ------------------
 
-* (!) Renamed methods prefixed with "get" to "load" for clarity:
+* __[!]__ Renamed methods prefixed with "get" to "load" for clarity:
 
     * `getPartials()` -> `loadPartials()`
     * `getTemplate()` -> `loadTemplate()`
