@@ -1,3 +1,13 @@
+{{#extend "stylesheets"}}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css"/>
+{{/extend}}
+
 <h1>{{> page/title}}</h1>
 
 {{> page/nav}}
+
+{{#extend "scripts"}}
+  <script>
+    document.write('Hello world!');
+  </script>
+{{/extend}}
