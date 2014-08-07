@@ -1,12 +1,13 @@
+'use strict';
+
 var express = require('express'),
     exphbs  = require('../../'), // "express3-handlebars"
-    helpers = require('./lib/helpers'),
+    helpers = require('./lib/helpers');
 
-    app = express(),
-    hbs;
+var app = express();
 
 // Create `ExpressHandlebars` instance with a default layout.
-hbs = exphbs.create({
+var hbs = exphbs.create({
     defaultLayout: 'main',
     helpers      : helpers,
 
@@ -27,12 +28,10 @@ app.set('view engine', 'handlebars');
 function exposeTemplates(req, res, next) {
     // Uses the `ExpressHandlebars` instance to get the get the **precompiled**
     // templates which will be shared with the client-side of the app.
-    hbs.loadTemplates('shared/templates/', {
+    hbs.getTemplates('shared/templates/', {
         cache      : app.enabled('view cache'),
         precompiled: true
-    }, function (err, templates) {
-        if (err) { return next(err); }
-
+    }).then(function (templates) {
         // RegExp to remove the ".handlebars" extension from the template names.
         var extRegex = new RegExp(hbs.extname + '$');
 
@@ -50,8 +49,9 @@ function exposeTemplates(req, res, next) {
             res.locals.templates = templates;
         }
 
-        next();
-    });
+        setImmediate(next);
+    })
+    .catch(next);
 }
 
 app.get('/', function (req, res) {
@@ -94,6 +94,7 @@ app.get('/echo/:message?', exposeTemplates, function (req, res) {
 });
 
 app.use(express.static('public/'));
-app.listen(3000);
 
-console.log('express3-handlebars example server listening on: 3000');
+app.listen(3000, function () {
+    console.log('express3-handlebars example server listening on: 3000');
+});

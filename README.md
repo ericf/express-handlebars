@@ -3,16 +3,17 @@ Express3 Handlebars
 
 A [Handlebars][] view engine for [Express][] which doesn't suck.
 
-[![Dependency Status](https://david-dm.org/ericf/express3-handlebars.png)][status]
+[![npm version](https://img.shields.io/npm/v/express3-handlebars.svg?style=flat)][npm]
+[![dependency status](https://img.shields.io/david/ericf/express3-handlebars.svg?style=flat)][dep-status]
 
 
 [Express]: https://github.com/visionmedia/express
 [Handlebars]: https://github.com/wycats/handlebars.js
-[status]: https://david-dm.org/ericf/express3-handlebars
+[npm]: https://www.npmjs.org/package/express3-handlebars
+[dep-status]: https://david-dm.org/ericf/express3-handlebars
 
 
-Goals & Design
---------------
+## Goals & Design
 
 I created this project out of frustration with the existing Handlebars view
 engines for Express. As of version 3.x, Express got out of the business of being
@@ -30,8 +31,8 @@ implemented. The following is that list:
 
 * Add back the concept of "partials" via Handlebars' partials mechanism.
 
-* Support a directory of partials; e.g., `{{> foo/bar}}` which exists on the
-  file system at `views/partials/foo/bar.handlebars` by default.
+* Support a directories of partials; e.g., `{{> foo/bar}}` which exists on the
+  file system at `views/partials/foo/bar.handlebars`, by default.
 
 * Smart file system I/O and template caching. When in development, templates are
   always loaded from disk. In production, raw files and compiled templates are
@@ -41,8 +42,8 @@ implemented. The following is that list:
   blocked from handling requests while reading from disk. I/O queuing is used to
   avoid doing unnecessary work.
 
-* Ability to expose precompiled templates and partials to the client, enabling
-  template sharing and reuse.
+* Ability to easily precompiled templates and partials for use on the client,
+  enabling template sharing and reuse.
 
 * Ability to use a different Handlebars module/implementation other than the
   Handlebars npm package.
@@ -51,7 +52,7 @@ implemented. The following is that list:
 
 This package was designed to work great for both the simple and complex use
 cases. I _intentionally_ made sure the full implementation is exposed and is
-easily overrideable.
+easily overridable.
 
 The package exports a function which can be invoked with no arguments or with a
 `config` object and it will return a function (closed over sane defaults) which
@@ -73,8 +74,7 @@ instances can be created with their own configuration, templates, partials, and
 helpers.
 
 
-Installation
-------------
+## Installation
 
 Install using npm:
 
@@ -83,8 +83,7 @@ $ npm install express3-handlebars
 ```
 
 
-Usage
------
+## Usage
 
 This view engine uses sane defaults that leverage the "Express-way" of
 structuring an app's views. This makes it trivial to use in basic apps:
@@ -111,9 +110,9 @@ Handlebars view engine using this package.
 
 ```javascript
 var express = require('express'),
-    exphbs  = require('express3-handlebars'),
+    exphbs  = require('express3-handlebars');
 
-    app = express();
+var app = express();
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -132,10 +131,10 @@ views of the app. `{{{body}}}` is used as a placeholder for where the main
 content should be rendered.
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>Example App</title>
 </head>
 <body>
@@ -161,7 +160,9 @@ The above example is bundled in this package's [examples directory][], where
 it can be run by:
 
 ```shell
-$ cd examples/basic/ && node app
+$ cd examples/basic/
+$ npm install
+$ npm start
 ```
 
 ### Using Instances
@@ -171,9 +172,9 @@ Another way to use this view engine is to create an instance(s) of
 
 ```javascript
 var express = require('express'),
-    exphbs  = require('express3-handlebars'),
+    exphbs  = require('express3-handlebars');
 
-    app = express(),
+var app = express(),
     hbs = exphbs.create({ /* config */ });
 
 // Register `hbs.engine` with the Express app.
@@ -200,8 +201,11 @@ The easiest way to control template/view caching is through Express'
 app.enable('view cache');
 ```
 
-Express enables this setting by default when in production mode, i.e.,
-`process.env.NODE_ENV === "production"`.
+Express enables this setting by default when in production mode, i.e.:
+
+```
+process.env.NODE_ENV === "production"
+```
 
 **Note:** All of the public API methods accept `options.cache`, which gives
 control over caching when calling these methods directly.
@@ -253,12 +257,11 @@ render-level.
 
 ```javascript
 var express = require('express'),
-    exphbs  = require('express3-handlebars'),
+    exphbs  = require('express3-handlebars');
 
-    app = express(),
-    hbs;
+var app = express();
 
-hbs = exphbs.create({
+var hbs = exphbs.create({
     // Specify helpers which are only registered on this instance.
     helpers: {
         foo: function () { return 'FOO!'; },
@@ -288,10 +291,10 @@ app.listen(3000);
 The app's home view which uses helper functions to help render the contents.
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>Example App - Home</title>
 </head>
 <body>
@@ -329,8 +332,7 @@ Refer to the [Handlebars website][] for more information on defining helpers:
 [Block Helpers]: http://handlebarsjs.com/block_helpers.html
 
 
-API
----
+## API
 
 ### Configuration and Defaults
 
@@ -367,9 +369,9 @@ for views:
 
 ```javascript
 var express = require('express'),
-    exphbs  = require('express3-handlebars'),
+    exphbs  = require('express3-handlebars');
 
-    app = express();
+var app = express();
 
 app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
@@ -395,7 +397,15 @@ levels over helper overrides.
 The string path to the directory where the layout templates reside.
 
 #### `partialsDir="views/partials/"`
-The string path to the directory where the partials templates reside.
+The string path to the directory where the partials templates reside or object
+with the following properties:
+
+* `dir`: The string path to the directory where the partials templates reside.
+* `namespace`: Optional string namespace to prefix the partial names.
+
+**Note:** Multiple partials dirs can be used by making `partialsDir` an array of
+strings, and/or config objects as described above. The namespacing feature is
+useful if multiple partials dirs are used and their file paths might clash.
 
 ### Properties
 
@@ -425,10 +435,13 @@ format: `{"path/to/template": [String]}`.
 The following is the list of public API methods provided via `ExpressHandlebars`
 instances:
 
-#### `loadPartials(options|callback, [callback])`
+**Note:** All of the public methods return a [`Promise`][promise] (with the
+exception of `renderView()` which is the interface with Express.)
 
-Retrieves the partials in the `partialsDir` and passes an object mapping the
-partials in the form `{name: partial}` to the `callback`.
+#### `getPartials([options])`
+
+Retrieves the partials in the `partialsDir` and returns a Promise for an object
+mapping the partials in the form `{name: partial}`.
 
 By default each partial will be a compiled Handlebars template function. Use
 `options.precompiled` to receive the partials as precompiled templates — this is
@@ -444,8 +457,6 @@ useful for sharing templates with client code.
   * `[precompiled=false]`: Whether precompiled templates should be provided,
     instead of compiled Handlebars template functions.
 
-* `callback`: Function to call once the partials are retrieved.
-
 The name of each partial corresponds to its location in `partialsDir`. For
 example, consider the following directory structure:
 
@@ -459,27 +470,22 @@ views
 2 directories, 2 files
 ```
 
-`loadPartials()` would produce the following result:
+`getPartials()` would produce the following result:
 
 ```javascript
 var hbs = require('express3-handlebars').create();
 
-hbs.loadPartials(function (err, partials) {
+hbs.getPartials().then(function (partials) {
     console.log(partials);
-    // => { 'foo.bar': [Function],
+    // => { 'foo/bar': [Function],
     // =>    title: [Function] }
 });
 ```
 
-**Note:** The partial name `"foo.bar"` would ideally be `"foo/bar"`, but this is
-being prevented by a [Handlebars bug][]. Once this bug is fixed, a future
-version will use a "/" separator. Templates requiring the partial still use:
-`{{> foo/bar}}`.
+#### `getTemplate(filePath, [options])`
 
-#### `loadTemplate(filePath, options|callback, [callback])`
-
-Retrieves the template at the specified `filePath` and passes a compiled
-Handlebars template function to the `callback`.
+Retrieves the template at the specified `filePath` and returns a Promise for the
+compiled Handlebars template function.
 
 Use `options.precompiled` to receive a precompiled Handlebars template.
 
@@ -495,13 +501,10 @@ Use `options.precompiled` to receive a precompiled Handlebars template.
   * `[precompiled=false]`: Whether a precompiled template should be provided,
     instead of a compiled Handlebars template function.
 
-* `callback`: Function to call once the template is retrieved.
+#### `getTemplates(dirPath, [options])`
 
-#### `loadTemplates(dirPath, options|callback, [callback])`
-
-Retrieves the all the templates in the specified `dirPath` and passes an object
-mapping the compiled templates in the form `{filename: template}` to the
-`callback`.
+Retrieves the all the templates in the specified `dirPath` and returns a Promise
+for an object mapping the compiled templates in the form `{filename: template}`.
 
 Use `options.precompiled` to receive precompiled Handlebars templates — this is
 useful for sharing templates with client code.
@@ -518,32 +521,35 @@ useful for sharing templates with client code.
   * `[precompiled=false]`: Whether precompiled templates should be provided,
     instead of a compiled Handlebars template function.
 
-* `callback`: Function to call once the templates are retrieved.
+#### `render(filePath, context, [options])`
 
-#### `render(filePath, options|callback, [callback])`
-
-Renders the template at the specified `filePath` using this instance's `helpers`
-and partials, and passes the resulting string to the `callback`.
-
-The `options` will be used both as the context in which the Handlebars template
-is rendered, and to signal this view engine on how it should behave, e.g.,
-`options.cache = false` will load _always_ load the templates from disk.
+Renders the template at the specified `filePath` with the `context`, using this
+instance's `helpers` and partials by default, and returns a Promise for the
+resulting string.
 
 **Parameters:**
 
 * `filePath`: String path to the Handlebars template file.
 
-* `[options]`: Optional object which will serve as the context in which the
-  Handlebars template is rendered. It may also contain any of the following
-  properties which affect this view engine's behavior:
+* `context`: Object in which the template will be executed. This contains all of
+  the values to fill into the template.
+
+* `[options]`: Optional object which can contain any of the following properties
+  which affect this view engine's behavior:
 
   * `[cache]`: Whether a cached template can be used if it have already been
     requested. This is recommended for production to avoid unnecessary file I/O.
 
+  * `[data]`: Optional object which can contain any data that Handlebars will
+    pipe through the template, all helpers, and all partials. This is a side
+    data channel.
+
   * `[helpers]`: Render-level helpers should be merged with (and will override)
     instance and global helper functions.
 
-* `callback`: Function to call once the template is retrieved.
+  * `[partials]`: Render-level partials that override _all_ this instance's
+    partials. This is used internally as an optimization to avoid re-loading all
+    the partials.
 
 #### `renderView(viewPath, options|callback, [callback])`
 
@@ -572,6 +578,10 @@ are rendered, and to signal this view engine on how it should behave, e.g.,
   * `[cache]`: Whether cached templates can be used if they have already been
     requested. This is recommended for production to avoid unnecessary file I/O.
 
+  * `[data]`: Optional object which can contain any data that Handlebars will
+    pipe through the template, all helpers, and all partials. This is a side
+    data channel.
+
   * `[helpers]`: Render-level helpers should be merged with (and will override)
     instance and global helper functions.
 
@@ -595,11 +605,10 @@ This utility function is used to compute the value for an `ExpressHandlebars`
 instance's `handlebarsVersion` property.
 
 
-[Handlebars bug]: https://github.com/wycats/handlebars.js/pull/389
+[promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
 
-Examples
---------
+## Examples
 
 ### [Basic Usage][]
 

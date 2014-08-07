@@ -1,13 +1,17 @@
+'use strict';
+
 var ExpressHandlebars = require('./lib/express-handlebars');
 
+exports = module.exports  = exphbs;
+exports.create            = create;
+exports.ExpressHandlebars = ExpressHandlebars;
+
+// -----------------------------------------------------------------------------
+
 function exphbs(config) {
-    return exphbs.create(config).engine;
+    return create(config).engine;
 }
 
-exphbs.create = function (config) {
+function create(config) {
     return new ExpressHandlebars(config);
-};
-
-exphbs.ExpressHandlebars = ExpressHandlebars;
-
-module.exports = exphbs;
+}
