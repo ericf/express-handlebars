@@ -1,3 +1,15 @@
+RENAMED TO: `express-handlebars`
+================================
+
+**This package has been renamed to [`express-handlebars`][new-npm], be sure to
+update your `package.json` files.**
+
+See: <https://www.npmjs.org/package/express-handlebars>
+
+[new-npm]: https://www.npmjs.org/package/express-handlebars
+
+----
+
 Express3 Handlebars
 ===================
 
