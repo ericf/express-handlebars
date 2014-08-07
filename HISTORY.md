@@ -1,6 +1,49 @@
 Express3 Handlebars Change History
 ==================================
 
+NEXT
+----
+
+* __[!]__ Rewritten to use Promises instead of `async` for asynchronous code.
+  ([#68][]) This resulted in the following public API changes:
+
+  * `loadPartials()` --> `getPartials()`, returns a Promise.
+  * `loadTemplate()` --> `getTemplate()`, returns a Promise.
+  * `loadTemplates()` --> `getTemplates()`, returns a Promise.
+  * `render(file, context, [options])`, returns a Promise.
+
+
+* `partialsDir` can now be set with an array of objects in the following form to
+  support namespaced partials: ([#70][] @joanniclaborde)
+
+      { dir: 'foo/bar/', namespace: 'bar' }
+
+* Added support for Handlebars' `data` channel via `options.data`. ([#62][])
+
+* Added `compileTemplate()` hook for the pre/post compile process, this also
+  supports returning a Promise. ([#39][], [#41][])
+
+* Added `_renderTemplate()` hook that supports returning a Promise.
+  ([#39][], [#41][])
+
+* Upgraded all dependencies, including Handlebars to 2.x. ([#59][])
+
+* Added `graceful-fs` dependency to support large numbers of files to avoid
+  EMFILE errors.
+
+* Reduced complexity of cache code.
+
+* Updated examples to each be self-contained and have `package.json` files.
+
+
+[#39]: https://github.com/ericf/express3-handlebars/issues/39
+[#41]: https://github.com/ericf/express3-handlebars/issues/41
+[#59]: https://github.com/ericf/express3-handlebars/issues/59
+[#62]: https://github.com/ericf/express3-handlebars/issues/62
+[#68]: https://github.com/ericf/express3-handlebars/issues/68
+[#70]: https://github.com/ericf/express3-handlebars/issues/70
+
+
 0.5.1 (2014-08-05)
 ------------------
 
