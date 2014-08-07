@@ -1,16 +1,20 @@
-Express3 Handlebars
-===================
+Express Handlebars
+==================
 
 A [Handlebars][] view engine for [Express][] which doesn't suck.
 
-[![npm version](https://img.shields.io/npm/v/express3-handlebars.svg?style=flat)][npm]
-[![dependency status](https://img.shields.io/david/ericf/express3-handlebars.svg?style=flat)][dep-status]
+[![npm version](https://img.shields.io/npm/v/express-handlebars.svg?style=flat)][npm]
+[![dependency status](https://img.shields.io/david/ericf/express-handlebars.svg?style=flat)][dep-status]
+
+**This package used to be named `express3-handlebars`. The previous
+`express-handlebars` package by @jneen can be found [here][jneen-exphbs].**
 
 
 [Express]: https://github.com/visionmedia/express
 [Handlebars]: https://github.com/wycats/handlebars.js
-[npm]: https://www.npmjs.org/package/express3-handlebars
-[dep-status]: https://david-dm.org/ericf/express3-handlebars
+[npm]: https://www.npmjs.org/package/express-handlebars
+[dep-status]: https://david-dm.org/ericf/express-handlebars
+[jneen-exphbs]: https://github.com/jneen/express-handlebars
 
 
 ## Goals & Design
@@ -79,7 +83,7 @@ helpers.
 Install using npm:
 
 ```shell
-$ npm install express3-handlebars
+$ npm install express-handlebars
 ```
 
 
@@ -110,7 +114,7 @@ Handlebars view engine using this package.
 
 ```javascript
 var express = require('express'),
-    exphbs  = require('express3-handlebars');
+    exphbs  = require('express-handlebars');
 
 var app = express();
 
@@ -172,7 +176,7 @@ Another way to use this view engine is to create an instance(s) of
 
 ```javascript
 var express = require('express'),
-    exphbs  = require('express3-handlebars');
+    exphbs  = require('express-handlebars');
 
 var app = express(),
     hbs = exphbs.create({ /* config */ });
@@ -257,7 +261,7 @@ render-level.
 
 ```javascript
 var express = require('express'),
-    exphbs  = require('express3-handlebars');
+    exphbs  = require('express-handlebars');
 
 var app = express();
 
@@ -322,7 +326,7 @@ Refer to the [Handlebars website][] for more information on defining helpers:
 * [Block Helpers][]
 
 
-[examples directory]: https://github.com/ericf/express3-handlebars/tree/master/examples
+[examples directory]: https://github.com/ericf/express-handlebars/tree/master/examples
 [view cache setting]: http://expressjs.com/api.html#app-settings
 [Express locals]: http://expressjs.com/api.html#app.locals
 [registered with Handlebars]: https://github.com/wycats/handlebars.js/#registering-helpers
@@ -341,7 +345,7 @@ creating `ExpressHandlebars` instances; both use the same configuration
 properties and defaults.
 
 ```javascript
-var exphbs = require('express3-handlebars');
+var exphbs = require('express-handlebars');
 
 // Using the engine factory:
 exphbs({ /* config */ });
@@ -369,7 +373,7 @@ for views:
 
 ```javascript
 var express = require('express'),
-    exphbs  = require('express3-handlebars');
+    exphbs  = require('express-handlebars');
 
 var app = express();
 
@@ -473,7 +477,7 @@ views
 `getPartials()` would produce the following result:
 
 ```javascript
-var hbs = require('express3-handlebars').create();
+var hbs = require('express-handlebars').create();
 
 hbs.getPartials().then(function (partials) {
     console.log(partials);
@@ -625,8 +629,8 @@ Advanced Usage example demonstrates how to use an `ExpressHandlebars` instance
 to share templates with the client, among other features.
 
 
-[Basic Usage]: https://github.com/ericf/express3-handlebars/tree/master/examples/basic
-[Advanced Usage]: https://github.com/ericf/express3-handlebars/tree/master/examples/advanced
+[Basic Usage]: https://github.com/ericf/express-handlebars/tree/master/examples/basic
+[Advanced Usage]: https://github.com/ericf/express-handlebars/tree/master/examples/advanced
 
 
 License
@@ -636,4 +640,4 @@ This software is free to use under the Yahoo! Inc. BSD license.
 See the [LICENSE file][] for license text and copyright information.
 
 
-[LICENSE file]: https://github.com/ericf/express3-handlebars/blob/master/LICENSE
+[LICENSE file]: https://github.com/ericf/express-handlebars/blob/master/LICENSE

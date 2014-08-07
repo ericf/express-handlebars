@@ -1,8 +1,8 @@
 {
-  "name": "express3-handlebars",
+  "name": "express-handlebars",
   "description": "A Handlebars view engine for Express which doesn't suck.",
   "version": "0.5.1",
-  "homepage": "https://github.com/ericf/express3-handlebars",
+  "homepage": "https://github.com/ericf/express-handlebars",
   "keywords": [
     "express",
     "express3",
@@ -18,10 +18,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ericf/express3-handlebars.git"
+    "url": "git://github.com/ericf/express-handlebars.git"
   },
   "bugs": {
-    "url": "https://github.com/ericf/express3-handlebars/issues"
+    "url": "https://github.com/ericf/express-handlebars/issues"
   },
   "engines": {
     "node": ">=0.8"

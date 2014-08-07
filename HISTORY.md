@@ -1,8 +1,10 @@
-Express3 Handlebars Change History
-==================================
+Express Handlebars Change History
+=================================
 
 NEXT
 ----
+
+* __[!]__ Renamed to: `express-handlebars`. ([#65][])
 
 * __[!]__ Rewritten to use Promises instead of `async` for asynchronous code.
   ([#68][]) This resulted in the following public API changes:
@@ -36,12 +38,13 @@ NEXT
 * Updated examples to each be self-contained and have `package.json` files.
 
 
-[#39]: https://github.com/ericf/express3-handlebars/issues/39
-[#41]: https://github.com/ericf/express3-handlebars/issues/41
-[#59]: https://github.com/ericf/express3-handlebars/issues/59
-[#62]: https://github.com/ericf/express3-handlebars/issues/62
-[#68]: https://github.com/ericf/express3-handlebars/issues/68
-[#70]: https://github.com/ericf/express3-handlebars/issues/70
+[#39]: https://github.com/ericf/express-handlebars/issues/39
+[#41]: https://github.com/ericf/express-handlebars/issues/41
+[#59]: https://github.com/ericf/express-handlebars/issues/59
+[#62]: https://github.com/ericf/express-handlebars/issues/62
+[#65]: https://github.com/ericf/express-handlebars/issues/65
+[#68]: https://github.com/ericf/express-handlebars/issues/68
+[#70]: https://github.com/ericf/express-handlebars/issues/70
 
 
 0.5.1 (2014-08-05)
@@ -55,8 +58,8 @@ NEXT
   ([#51][] @calvinmetcalf)
 
 
-[#30]: https://github.com/ericf/express3-handlebars/issues/30
-[#51]: https://github.com/ericf/express3-handlebars/issues/51
+[#30]: https://github.com/ericf/express-handlebars/issues/30
+[#51]: https://github.com/ericf/express-handlebars/issues/51
 
 
 0.5.0 (2013-07-25)
@@ -81,10 +84,10 @@ NEXT
   being invoked. ([#27][])
 
 
-[#20]: https://github.com/ericf/express3-handlebars/issues/20
-[#21]: https://github.com/ericf/express3-handlebars/issues/21
-[#22]: https://github.com/ericf/express3-handlebars/issues/22
-[#27]: https://github.com/ericf/express3-handlebars/issues/27
+[#20]: https://github.com/ericf/express-handlebars/issues/20
+[#21]: https://github.com/ericf/express-handlebars/issues/21
+[#22]: https://github.com/ericf/express-handlebars/issues/22
+[#27]: https://github.com/ericf/express-handlebars/issues/27
 
 
 0.4.1 (2013-04-06)
@@ -122,7 +125,7 @@ NEXT
   to override. ([#14][])
 
 
-[#14]: https://github.com/ericf/express3-handlebars/issues/14
+[#14]: https://github.com/ericf/express-handlebars/issues/14
 
 
 0.3.2 (2013-02-20)
@@ -139,7 +142,7 @@ NEXT
   `renderView()` docs. ([#7][])
 
 
-[#7]: https://github.com/ericf/express3-handlebars/issues/7
+[#7]: https://github.com/ericf/express-handlebars/issues/7
 
 
 0.3.0 (2013-02-18)
@@ -158,8 +161,8 @@ NEXT
   differ between Handlebars releases.
 
 
-[#3]: https://github.com/ericf/express3-handlebars/issues/3
-[#11]: https://github.com/ericf/express3-handlebars/issues/11
+[#3]: https://github.com/ericf/express-handlebars/issues/3
+[#11]: https://github.com/ericf/express-handlebars/issues/11
 
 
 0.2.3 (2013-02-13)
@@ -171,7 +174,7 @@ NEXT
   This hack will only be applied to old versions of Handlebars. ([#9][])
 
 
-[#9]: https://github.com/ericf/express3-handlebars/issues/9
+[#9]: https://github.com/ericf/express-handlebars/issues/9
 
 
 0.2.2 (2013-02-04)
@@ -209,9 +212,9 @@ NEXT
   methods to prevent trying to render with precompiled templates. ([#2][])
 
 
-[#1]: https://github.com/ericf/express3-handlebars/issues/1
-[#2]: https://github.com/ericf/express3-handlebars/issues/2
-[#5]: https://github.com/ericf/express3-handlebars/issues/5
+[#1]: https://github.com/ericf/express-handlebars/issues/1
+[#2]: https://github.com/ericf/express-handlebars/issues/2
+[#5]: https://github.com/ericf/express-handlebars/issues/5
 
 
 0.1.2 (2013-01-10)

@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express'),
-    exphbs  = require('../../'), // "express3-handlebars"
+    exphbs  = require('../../'), // "express-handlebars"
     helpers = require('./lib/helpers');
 
 var app = express();
@@ -96,5 +96,5 @@ app.get('/echo/:message?', exposeTemplates, function (req, res) {
 app.use(express.static('public/'));
 
 app.listen(3000, function () {
-    console.log('express3-handlebars example server listening on: 3000');
+    console.log('express-handlebars example server listening on: 3000');
 });
