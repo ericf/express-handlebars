@@ -9,7 +9,8 @@
     "handlebars",
     "view",
     "layout",
-    "partials"
+    "partials",
+    "templates"
   ],
   "author": {
     "name": "Eric Ferraiuolo",
