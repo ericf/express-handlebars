@@ -1,8 +1,18 @@
 Express Handlebars Change History
 =================================
 
-NEXT
-----
+1.0.1 (2014-08-08)
+------------------
+
+* Fixed bug where rendered content was only be returned if a layout template was
+  being used. Now a layout-less render will actually return content. ([#73][])
+
+
+[#73]: https://github.com/ericf/express-handlebars/issues/73
+
+
+1.0.0 (2014-08-07)
+------------------
 
 * __[!]__ Renamed to: `express-handlebars`. ([#65][])
 
