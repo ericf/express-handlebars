@@ -30,9 +30,14 @@
   "dependencies": {
     "glob": "^4.0.3",
     "graceful-fs": "^3.0.2",
-    "handlebars": "^2.0.0-alpha.4",
     "promise": "^5.0.0",
     "semver": "^3.0.1"
+  },
+  "peerDependencies": {
+    "handlebars": "^2.0.0-alpha.4"
+  },
+  "devDependencies": {
+    "handlebars": "^2.0.0-alpha.4"
   },
   "main": "index.js",
   "directories": {

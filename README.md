@@ -389,6 +389,12 @@ The Handlebars module/implementation. This allows for the `ExpressHandlebars`
 instance to use a different Handlebars module/implementation than that provided
 by the Handlebars npm package.
 
+This module also defines `handlebars` as a peer dependency. This means that if
+you have a specific version of `handlebars` defined in your `package.json`
+then that version of `handlebars` will automatically be used. If you don't
+specify a specific version of `handlebars` in your `package.json` then this
+module will install the latest version available from npm.
+
 #### `helpers`
 An object which holds the helper functions used when rendering templates with
 this `ExpressHandlebars` instance. When rendering a template, a collection of
