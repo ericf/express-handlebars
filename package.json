@@ -31,11 +31,16 @@
     "glob": "^4.0.3",
     "graceful-fs": "^3.0.2",
     "handlebars": "^2.0.0-alpha.4",
+    "mocha": "^1.21.4",
     "promise": "^5.0.0",
-    "semver": "^3.0.1"
+    "semver": "^3.0.1",
+    "sinon": "^1.10.3"
   },
   "main": "index.js",
   "directories": {
     "lib": "./lib"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test"
   }
 }
