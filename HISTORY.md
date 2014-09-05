@@ -1,6 +1,16 @@
 Express Handlebars Change History
 =================================
 
+1.0.2 (2014-09-05)
+------------------
+
+* Fixed `engines` entry in `package.json` to Node `>=0.10` to reflect this
+  package's requirements. ([#78][])
+
+
+[#78]: https://github.com/ericf/express-handlebars/issues/78
+
+
 1.0.1 (2014-08-08)
 ------------------
 
