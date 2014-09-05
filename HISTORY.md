@@ -1,6 +1,16 @@
 Express Handlebars Change History
 =================================
 
+1.0.3 (2014-09-05)
+------------------
+
+* Fixed issue with namespaced partials dirs not actually being namespaces.
+  ([#76][] @inerte)
+
+
+[#76]: https://github.com/ericf/express-handlebars/issues/76
+
+
 1.0.2 (2014-09-05)
 ------------------
 
