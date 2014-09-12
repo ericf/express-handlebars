@@ -406,6 +406,8 @@ with the following properties:
 
 * `dir`: The string path to the directory where the partials templates reside.
 * `namespace`: Optional string namespace to prefix the partial names.
+* `templates`: Optional collection (or promise of a collection) of templates in
+  the form: `{filename: template}`.
 
 **Note:** Multiple partials dirs can be used by making `partialsDir` an array of
 strings, and/or config objects as described above. The namespacing feature is
