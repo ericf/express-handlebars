@@ -1,6 +1,23 @@
 Express Handlebars Change History
 =================================
 
+NEXT
+----
+
+* __[!]__ Upgraded Handlebars to 2.0.0 final, it was beta before.
+
+* Add support for `partialsDir` to be configured with a collection (or promise
+  for a collection) of templates, via the new `templates` prop in `partialDir`
+  config objects. This allows developers to hand Express Handlebars the compiled
+  partials templates to use for a specific partials dir.
+  ([#81][] @joanniclaborde)
+
+* Upgraded Promise dependency.
+
+
+[#81]: https://github.com/ericf/express-handlebars/issues/81
+
+
 1.0.3 (2014-09-05)
 ------------------
 
