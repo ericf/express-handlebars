@@ -1,8 +1,8 @@
 Express Handlebars Change History
 =================================
 
-NEXT
-----
+1.1.0 (2014-09-14)
+------------------
 
 * __[!]__ Upgraded Handlebars to 2.0.0 final, it was beta before.
 
