@@ -400,22 +400,9 @@ levels over helper overrides.
 #### `layoutsDir="views/layouts/"`
 The string path to the directory where the layout templates reside.
 
-**Note:** If you configure Express to look for views in a custom location, you 
-will need to reflect that difference by passing an updated path as the `layoutsDir` 
-property in your configuration. _Example:_
-
-```javascript
-var app = express();
-var customViewsPath = path.join(__dirname, 'customViewsFolder', 'views');
-// This changes where Express looks for view templates
-app.set('views', customViewsPath); 
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main',
-  // Refect our custom views path here
-  layoutsDir: customViewsPath + '/layouts' 
-}));
-app.set('view engine', 'handlebars');
-```
+**Note:** If you configure Express to look for views in a custom location (e.g.,
+`app.set('views', 'some/path/')`), you will need to reflect that by passing an
+updated path as the `layoutsDir` property in your configuration.
 
 #### `partialsDir="views/partials/"`
 The string path to the directory where the partials templates reside or object
@@ -425,6 +412,10 @@ with the following properties:
 * `namespace`: Optional string namespace to prefix the partial names.
 * `templates`: Optional collection (or promise of a collection) of templates in
   the form: `{filename: template}`.
+
+**Note:** If you configure Express to look for views in a custom location (e.g.,
+`app.set('views', 'some/path/')`), you will need to reflect that by passing an
+updated path as the `partialsDir` property in your configuration.
 
 **Note:** Multiple partials dirs can be used by making `partialsDir` an array of
 strings, and/or config objects as described above. The namespacing feature is
