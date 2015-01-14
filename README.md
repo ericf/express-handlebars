@@ -421,6 +421,37 @@ updated path as the `partialsDir` property in your configuration.
 strings, and/or config objects as described above. The namespacing feature is
 useful if multiple partials dirs are used and their file paths might clash.
 
+#### `fileNameAsPartialName=false`
+Boolean value used to determine whether the relative path of a template or the template's 
+file name will be used in setting the name (or key) of the partials. This allows for 
+componentization of your views like the *image-gallery* in the directory structure below 
+without needing to reference the path of the *image-gallery.handlebars* in a handlebars 
+template like this: `{{>image-gallery/image-gallery}}`. If `fileNameAsPartialName` is set 
+to `true` then you can reference the template like this: `{{>image-gallery}}`.
+
+**Directory Structure:**
+
+```
+.
+├── app.js
+└── views
+    ├── home
+    │   ├── home.handlebars
+    │   ├── home.scss
+    │   └── home.js
+    ├── image-gallery
+    │   ├── image-gallery.handlebars
+    │   ├── image-gallery.scss
+    │   └── image-gallery.js
+    └── layouts
+        └── main.handlebars
+
+```
+
+**Note:** If you set `fileNameAsPartialName` to `true` then the file names must be unique 
+to ensure you render the proper template.
+
+
 ### Properties
 
 The public API properties are provided via `ExpressHandlebars` instances. In
