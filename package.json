@@ -30,9 +30,9 @@
   "dependencies": {
     "glob": "^4.0.3",
     "graceful-fs": "^3.0.2",
-    "handlebars": "^2.0.0",
-    "promise": "^6.0.0",
-    "semver": "^3.0.1"
+    "handlebars": "^3.0.0",
+    "object.assign": "^1.1.1",
+    "promise": "^6.0.0"
   },
   "main": "index.js",
   "directories": {
