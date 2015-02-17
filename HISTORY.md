@@ -1,12 +1,25 @@
 Express Handlebars Change History
 =================================
 
+1.2.0 (2015-02-17)
+------------------
+
+* Added support for render-level `partials` to be specified when calling
+  `renderView()` (which is the method Express calls). The `options.partials`
+  value matches what Handlebars accepts during template rendering: it should
+  have the shape `{partialName: fn}` or be a Promise for such an object.
+  ([#82][])
+
+
+[#82]: https://github.com/ericf/express-handlebars/issues/82
+
+
 1.1.0 (2014-09-14)
 ------------------
 
 * __[!]__ Upgraded Handlebars to 2.0.0 final, it was beta before.
 
-* Add support for `partialsDir` to be configured with a collection (or promise
+* Added support for `partialsDir` to be configured with a collection (or promise
   for a collection) of templates, via the new `templates` prop in `partialDir`
   config objects. This allows developers to hand Express Handlebars the compiled
   partials templates to use for a specific partials dir.

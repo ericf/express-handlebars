@@ -1,5 +1,7 @@
 'use strict';
 
+var Promise = global.Promise || require('promise');
+
 var express = require('express'),
     exphbs  = require('../../'), // "express-handlebars"
     helpers = require('./lib/helpers');
@@ -89,7 +91,11 @@ app.get('/echo/:message?', exposeTemplates, function (req, res) {
         message: req.params.message,
 
         // Overrides which layout to use, instead of the defaul "main" layout.
-        layout: 'shared-templates'
+        layout: 'shared-templates',
+
+        partials: Promise.resolve({
+            echo: hbs.handlebars.compile('<p>ECHO: {{message}}</p>')
+        })
     });
 });
 
