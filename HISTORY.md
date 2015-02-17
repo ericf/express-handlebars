@@ -1,6 +1,18 @@
 Express Handlebars Change History
 =================================
 
+1.2.1 (2015-02-17)
+------------------
+
+* Locked down `glob` dependency to a v4 version range that is known to work with
+  this package _and_ support symlinks. The `glob` version can be updated when
+  [isaacs/node-glob#139](https://github.com/isaacs/node-glob/issues/139) is
+  resolved. ([#98][] @adgad)
+
+
+[#98]: https://github.com/ericf/express-handlebars/issues/98
+
+
 1.2.0 (2015-02-17)
 ------------------
 
