@@ -558,12 +558,13 @@ resulting string.
     pipe through the template, all helpers, and all partials. This is a side
     data channel.
 
-  * `[helpers]`: Render-level helpers should be merged with (and will override)
-    instance and global helper functions.
+  * `[helpers]`: Render-level helpers that will be used instead of any
+    instance-level helpers; these will be merged with (and will override) any
+    global Handlebars helper functions.
 
-  * `[partials]`: Render-level partials that override _all_ this instance's
-    partials. This is used internally as an optimization to avoid re-loading all
-    the partials.
+  * `[partials]`: Render-level partials that will be used instead of any
+    instance-level partials. This is used internally as an optimization to avoid
+    re-loading all the partials.
 
 #### `renderView(viewPath, options|callback, [callback])`
 
@@ -596,8 +597,12 @@ are rendered, and to signal this view engine on how it should behave, e.g.,
     pipe through the template, all helpers, and all partials. This is a side
     data channel.
 
-  * `[helpers]`: Render-level helpers should be merged with (and will override)
-    instance and global helper functions.
+  * `[helpers]`: Render-level helpers that will be merged with (and will
+    override) instance and global helper functions.
+
+  * `[partials]`: Render-level partials will be merged with (and will override)
+    instance and global partials. This should be a `{partialName: fn}` hash or
+    a Promise of an object with this shape.
 
   * `[layout]`: Optional string path to the Handlebars template file to be used
     as the "layout". This overrides any `defaultLayout` value. Passing a falsy
