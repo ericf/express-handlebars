@@ -1,6 +1,13 @@
 Express Handlebars Change History
 =================================
 
+1.2.2 (2015-03-06)
+------------------
+
+* Upgraded `glob` dependency to v5 which now officially supports symlinks via
+  the new `follow` option. ([#98][])
+
+
 1.2.1 (2015-02-17)
 ------------------
 
