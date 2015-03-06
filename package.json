@@ -28,7 +28,7 @@
     "node": ">=0.10"
   },
   "dependencies": {
-    "glob": ">=4.0.3 <=4.0.6",
+    "glob": "^5.0.0",
     "graceful-fs": "^3.0.2",
     "handlebars": "^2.0.0",
     "promise": "^6.0.0",
