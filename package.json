@@ -12,11 +12,7 @@
     "partials",
     "templates"
   ],
-  "author": {
-    "name": "Eric Ferraiuolo",
-    "email": "eferraiuolo@gmail.com",
-    "url": "http://ericf.me/"
-  },
+  "author": "Eric Ferraiuolo <eferraiuolo@gmail.com> (http://ericf.me/)",
   "repository": {
     "type": "git",
     "url": "git://github.com/ericf/express-handlebars.git"
@@ -36,6 +32,11 @@
   },
   "main": "index.js",
   "directories": {
-    "lib": "./lib"
-  }
+    "example": "examples"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "BSD-3-Clause"
 }
