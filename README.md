@@ -107,7 +107,7 @@ app.listen(3000);
 
 The main layout is the HTML page wrapper which can be reused for the different views of the app. `{{{body}}}` is used as a placeholder for where the main content should be rendered.
 
-```html
+```handlebars
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,7 +126,7 @@ The main layout is the HTML page wrapper which can be reused for the different v
 
 The content for the app's home view which will be rendered into the layout's `{{{body}}}`.
 
-```html
+```handlebars
 <h1>Example App: Home</h1>
 ```
 
@@ -242,7 +242,7 @@ app.listen(3000);
 
 The app's home view which uses helper functions to help render the contents.
 
-```html
+```handlebars
 <!DOCTYPE html>
 <html>
 <head>
