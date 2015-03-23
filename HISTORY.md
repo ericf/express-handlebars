@@ -1,6 +1,45 @@
 Express Handlebars Change History
 =================================
 
+2.0.0 (2015-03-22)
+------------------
+
+* __[!]__ Upgraded to Handlebars 3.0 by default, but still works with Handlebars
+  2.x by using the `handlebars` config option. ([#105][])
+
+* __[!]__ Removed using prototype properties for default config values. The
+  default values are now embedded in the constructor. ([#105][])
+
+* __[!]__ Removed `handlebarsVersion` instance property and
+  `getHandlebarsSemver()` static function on the `ExpressHandlebars`
+  constructor. ([#105][])
+
+* __[!]__ Replaced undocumented `compileTemplate()` hook with the protected but
+  supported `_compileTemplate()` and `_precompileTemplate()` hooks. ([#95][])
+
+* Fixed layout path resolution on Windows. ([#113][] @Tineler)
+
+* Added `compilerOptions` config property which is passed along to
+  `Handlebars.compile()` and `Handlebars.precompile()`. ([#95][])
+
+* Exposed Express Handlebars metadata to the data channel during render. This
+  metadata is accessible via `{{@exphbs.*}}` ([#89][], [#101][])
+
+* Added new "protected" hooks for AOP-ing template compilation and rendering,
+  all of which can optionally return a Promise: ([#105][])
+
+  * `_compileTemplate()`
+  * `_precompileTemplate()`
+  * `_renderTemplate()`
+
+
+[#89]: https://github.com/ericf/express-handlebars/issues/89
+[#95]: https://github.com/ericf/express-handlebars/issues/95
+[#101]: https://github.com/ericf/express-handlebars/issues/101
+[#105]: https://github.com/ericf/express-handlebars/issues/105
+[#113]: https://github.com/ericf/express-handlebars/issues/113
+
+
 1.2.2 (2015-03-06)
 ------------------
 
