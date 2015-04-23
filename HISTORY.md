@@ -1,6 +1,16 @@
 Express Handlebars Change History
 =================================
 
+2.0.1 (2015-04-23)
+------------------
+
+* Guarded against unexpected Handlebars API change that was released in a patch.
+  ([#125][])
+
+
+[#125]: https://github.com/ericf/express-handlebars/issues/125
+
+
 2.0.0 (2015-03-22)
 ------------------
 
