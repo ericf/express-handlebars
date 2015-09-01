@@ -26,7 +26,7 @@
   "dependencies": {
     "glob": "^5.0.0",
     "graceful-fs": "^3.0.2",
-    "handlebars": "^3.0.0",
+    "handlebars": "^4.0.0",
     "object.assign": "^1.1.1",
     "promise": "^6.0.0"
   },
