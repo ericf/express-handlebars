@@ -27,7 +27,7 @@
     "glob": "^6.0.4",
     "graceful-fs": "^4.1.2",
     "handlebars": "^4.0.0",
-    "object-assign": "^4.0.1",
+    "object.assign": "^1.1.1",
     "promise": "^7.0.0"
   },
   "main": "index.js",
