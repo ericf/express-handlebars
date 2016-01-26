@@ -1,10 +1,10 @@
 Express Handlebars Change History
 =================================
 
-2.0.2 (2016-01-19)
+3.0.0 (2016-01-26)
 ------------------
 
-* Updated dependencies. ([#142](https://github.com/ericf/express-handlebars/pull/142), [#152](https://github.com/ericf/express-handlebars/pull/152), [#166](https://github.com/ericf/express-handlebars/pull/152))
+* Upgraded to Handlebars 4.0. ([#142][])
 
 2.0.1 (2015-04-23)
 ------------------
