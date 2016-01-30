@@ -1,6 +1,8 @@
 Express Handlebars
 ==================
 
+[![Join the chat at https://gitter.im/ericf/express-handlebars](https://badges.gitter.im/ericf/express-handlebars.svg)](https://gitter.im/ericf/express-handlebars?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A [Handlebars][] view engine for [Express][] which doesn't suck.
 
 [![npm version][npm-badge]][npm]
