@@ -437,7 +437,7 @@ Use `options.precompiled` to receive a precompiled Handlebars template.
   * `[precompiled=false]`: Whether a precompiled template should be provided, instead of a compiled Handlebars template function.
 
 #### `getTemplates(dirPath, [options])`
-Retrieves the all the templates in the specified `dirPath` and returns a Promise for an object mapping the compiled templates in the form `{filename: template}`.
+Retrieves all the templates in the specified `dirPath` and returns a Promise for an object mapping the compiled templates in the form `{filename: template}`.
 
 Use `options.precompiled` to receive precompiled Handlebars templates — this is useful for sharing templates with client code.
 
