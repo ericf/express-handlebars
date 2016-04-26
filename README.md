@@ -46,7 +46,7 @@ After building a half-dozen Express apps, I developed requirements and opinions 
 
 This package was designed to work great for both the simple and complex use cases. I _intentionally_ made sure the full implementation is exposed and is easily overridable.
 
-The package exports a function which can be invoked with no arguments or with a `config` object and it will return a function (closed over sane defaults) which can be registered with an Express app. It's an engine factory function.
+The package exports a function which can be invoked with no arguments or with a `config` object and it will return a function (closed over same defaults) which can be registered with an Express app. It's an engine factory function.
 
 This exported engine factory has two properties which expose the underlying implementation:
 
