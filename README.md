@@ -32,7 +32,7 @@ After building a half-dozen Express apps, I developed requirements and opinions 
 
 * Add back the concept of "partials" via Handlebars' partials mechanism.
 
-* Support a directories of partials; e.g., `{{> foo/bar}}` which exists on the file system at `views/partials/foo/bar.handlebars`, by default.
+* Support a directory of partials; e.g., `{{> foo/bar}}` which exists on the file system at `views/partials/foo/bar.handlebars`, by default.
 
 * Smart file system I/O and template caching. When in development, templates are always loaded from disk. In production, raw files and compiled templates are cached, including partials.
 
