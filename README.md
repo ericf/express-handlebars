@@ -46,7 +46,7 @@ After building a half-dozen Express apps, I developed requirements and opinions 
 
 This package was designed to work great for both the simple and complex use cases. I _intentionally_ made sure the full implementation is exposed and is easily overridable.
 
-The package exports a function which can be invoked with no arguments or with a `config` object and it will return a function (closed over sane defaults) which can be registered with an Express app. It's an engine factory function.
+The package exports a function which can be invoked with no arguments or with a `config` object and it will return a function (closed over sensible defaults) which can be registered with an Express app. It's an engine factory function.
 
 This exported engine factory has two properties which expose the underlying implementation:
 
@@ -68,7 +68,7 @@ $ npm install express-handlebars
 
 ## Usage
 
-This view engine uses sane defaults that leverage the "Express-way" of structuring an app's views. This makes it trivial to use in basic apps:
+This view engine uses sensible defaults that leverage the "Express-way" of structuring an app's views. This makes it trivial to use in basic apps:
 
 ### Basic Usage
 
