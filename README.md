@@ -1,6 +1,8 @@
 Express Handlebars
 ==================
 
+[![Join the chat at https://gitter.im/ericf/express-handlebars](https://badges.gitter.im/ericf/express-handlebars.svg)](https://gitter.im/ericf/express-handlebars?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A [Handlebars][] view engine for [Express][] which doesn't suck.
 
 [![npm version][npm-badge]][npm]
@@ -30,7 +32,7 @@ After building a half-dozen Express apps, I developed requirements and opinions 
 
 * Add back the concept of "partials" via Handlebars' partials mechanism.
 
-* Support a directories of partials; e.g., `{{> foo/bar}}` which exists on the file system at `views/partials/foo/bar.handlebars`, by default.
+* Support a directory of partials; e.g., `{{> foo/bar}}` which exists on the file system at `views/partials/foo/bar.handlebars`, by default.
 
 * Smart file system I/O and template caching. When in development, templates are always loaded from disk. In production, raw files and compiled templates are cached, including partials.
 
@@ -44,7 +46,7 @@ After building a half-dozen Express apps, I developed requirements and opinions 
 
 This package was designed to work great for both the simple and complex use cases. I _intentionally_ made sure the full implementation is exposed and is easily overridable.
 
-The package exports a function which can be invoked with no arguments or with a `config` object and it will return a function (closed over sane defaults) which can be registered with an Express app. It's an engine factory function.
+The package exports a function which can be invoked with no arguments or with a `config` object and it will return a function (closed over sensible defaults) which can be registered with an Express app. It's an engine factory function.
 
 This exported engine factory has two properties which expose the underlying implementation:
 
@@ -66,7 +68,7 @@ $ npm install express-handlebars
 
 ## Usage
 
-This view engine uses sane defaults that leverage the "Express-way" of structuring an app's views. This makes it trivial to use in basic apps:
+This view engine uses sensible defaults that leverage the "Express-way" of structuring an app's views. This makes it trivial to use in basic apps:
 
 ### Basic Usage
 
@@ -435,7 +437,7 @@ Use `options.precompiled` to receive a precompiled Handlebars template.
   * `[precompiled=false]`: Whether a precompiled template should be provided, instead of a compiled Handlebars template function.
 
 #### `getTemplates(dirPath, [options])`
-Retrieves the all the templates in the specified `dirPath` and returns a Promise for an object mapping the compiled templates in the form `{filename: template}`.
+Retrieves all the templates in the specified `dirPath` and returns a Promise for an object mapping the compiled templates in the form `{filename: template}`.
 
 Use `options.precompiled` to receive precompiled Handlebars templates — this is useful for sharing templates with client code.
 
