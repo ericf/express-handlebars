@@ -24,7 +24,7 @@
     "node": ">=0.10"
   },
   "dependencies": {
-    "glob": "^6.0.4",
+    "glob": "^7.0.6",
     "graceful-fs": "^4.1.2",
     "handlebars": "^4.0.5",
     "object.assign": "^4.0.3",
