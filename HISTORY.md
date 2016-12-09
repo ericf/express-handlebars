@@ -1,6 +1,11 @@
 Express Handlebars Change History
 =================================
 
+3.1.0 (2016-12-08)
+------------------
+* Add capability to render network based templates and partials.
+  (All changes are backwards compatible) (@andy9775)
+
 3.0.0 (2016-01-26)
 ------------------
 

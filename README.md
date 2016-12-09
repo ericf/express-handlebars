@@ -42,6 +42,8 @@ After building a half-dozen Express apps, I developed requirements and opinions 
 
 * Ability to use a different Handlebars module/implementation other than the Handlebars npm package.
 
+* Ability to fetch templates from the network. This is useful when using webpack dev server with Hot Module Reloading and generating a custom template via HtmlWebpackPlugin. It can also be used in production if you have your handlebars templates on a remote server.
+
 ### Package Design
 
 This package was designed to work great for both the simple and complex use cases. I _intentionally_ made sure the full implementation is exposed and is easily overridable.
@@ -55,6 +57,8 @@ This exported engine factory has two properties which expose the underlying impl
 * `create()`: A convenience factory function for creating `ExpressHandlebars` instances.
 
 An instance-based approach is used so that multiple `ExpressHandlebars` instances can be created with their own configuration, templates, partials, and helpers.
+
+Further, if loading templates from the network a custom View resolver should be set. This is defined as `NetworkView` and can be required using `require('express-handlebars').NetworkView` or `import { NetworkView } from 'express-handlebars'` if using ES2015 syntax.
 
 
 ## Installation
@@ -140,6 +144,37 @@ The above example is bundled in this package's [examples directory][], where it 
 $ cd examples/basic/
 $ npm install
 $ npm start
+```
+
+### Advanced Usage with network based templates
+
+```javascript
+var express     = require('express');
+var exphbs      = require('express-handlebars');
+var NetworkView = require('express-handlebars').NetworkView
+
+var app = express();
+
+app.engine('handlebars', exphbs({
+  layoutsAddress: 'http://localhost:3000/dist',
+  partialsAddress: [
+    {
+      path: 'http://localhost:3000/dist',
+      templates: [
+        'title.handlebars',
+        'body.handlebars'
+      ]
+    }
+  ]
+}));
+app.set('view engine', 'handlebars');
+app.set('view', NetworkView); // must be set to use network based templates
+
+app.get('/', function (req, res) {
+    res.render('home');
+});
+
+app.listen(3000);
 ```
 
 ### Using Instances
@@ -342,6 +377,10 @@ The string path to the directory where the layout templates reside.
 
 **Note:** If you configure Express to look for views in a custom location (e.g., `app.set('views', 'some/path/')`), you will need to reflect that by passing an updated path as the `layoutsDir` property in your configuration.
 
+#### `layoutsAddress`
+The string path to the URL endpoint where the layout templates reside.
+**Note:** If you configure Express to look for views in a custom location using `app.set('views', '...')`, you will need to pass the same path to `layoutsAddress`.
+
 #### `partialsDir="views/partials/"`
 The string path to the directory where the partials templates reside or object with the following properties:
 
@@ -352,6 +391,14 @@ The string path to the directory where the partials templates reside or object w
 **Note:** If you configure Express to look for views in a custom location (e.g., `app.set('views', 'some/path/')`), you will need to reflect that by passing an updated path as the `partialsDir` property in your configuration.
 
 **Note:** Multiple partials dirs can be used by making `partialsDir` an array of strings, and/or config objects as described above. The namespacing feature is useful if multiple partials dirs are used and their file paths might clash.
+
+#### `partialsAddress`
+The URL where the partials templates reside or an object with the following properties:
+
+* `path`: The string URL to the location of partial templates. Can be a single template location or the URL endpoint containing the array of templates defined under `templates`.
+* `namespace`: Optional string namespace to prefix the partial names.
+* `templates`: Optional collection of templates names in the form `['index.handlebars', 'home.handlebars']`. If using multiple templates defined at one endpoint, they must all be defined here - we don't have the ability to traverse the files available at the URL.
+Further, requests are made without modifying the template names. If you provide `[index, home]` then we will make a request to `/index` or `/home`. If `[index.handlebars, home.handlebars]` is provided, the request is made to `/index.handlebars` and `/home.handlebars` - therefore providing the file extension is critical. It is also not possible to fetch all the partials in one go - each parial listed is fetched one by one. However, if configured parials are cached locally.
 
 #### `defaultLayout`
 The string name or path of a template in the `layoutsDir` to use as the default layout. This is overridden by a `layout` specified in the app or response `locals`. **Note:** A falsy value will render without a layout; e.g., `res.render('home', {layout: false});`.
@@ -420,6 +467,20 @@ hbs.getPartials().then(function (partials) {
     // =>    title: [Function] }
 });
 ```
+#### `getRemotePartials([options])`
+Retrieves the partials in the `partialsAddress` and returns a Promise for an object mapping the partials in the form `{name: partial}`.
+
+By default each partial will be a compiled Handlebars template function. Use `options.precompiled` to receive the partials as precompiled templates — this is useful for sharing templates with client code.
+
+**Parameters:**
+
+* `[options]`: Optional object containing any of the following properties:
+
+  * `[cache]`: Whether cached templates can be used if they have already been requested. This is recommended for production to avoid unnecessary network I/O.
+
+  * `[precompiled=false]`: Whether precompiled templates should be provided, instead of compiled Handlebars template functions.
+
+If using a single `partialsAddress` then it must specify the exact template to use as we cannot traverse the files available at a defined URL. If using an array of objects to define the partials, each object should define a `path` defining the URL and `templates` which should contain an array of partials avaiable at the defined `path`.
 
 #### `getTemplate(filePath, [options])`
 Retrieves the template at the specified `filePath` and returns a Promise for the compiled Handlebars template function.
@@ -433,6 +494,21 @@ Use `options.precompiled` to receive a precompiled Handlebars template.
 * `[options]`: Optional object containing any of the following properties:
 
   * `[cache]`: Whether a cached template can be used if it have already been requested. This is recommended for production to avoid necessary file I/O.
+
+  * `[precompiled=false]`: Whether a precompiled template should be provided, instead of a compiled Handlebars template function.
+
+### `getRemoteTemplate(path, [options])`
+Retrieves the template specifed at `path` from a network resource and returns a Promise for the compiled Handlebars template function.
+
+Use `options.precompiled` to receive a precompiled Handlebars template.
+
+**Parameters:**
+
+* `path`: String URL to the Handlebars template file.
+
+* `[options]`: Optional object containing any of the following properties:
+
+  * `[cache]`: Whether a cached template can be used if it have already been requested. This is recommended for production to avoid necessary network I/O.
 
   * `[precompiled=false]`: Whether a precompiled template should be provided, instead of a compiled Handlebars template function.
 
@@ -451,7 +527,25 @@ Use `options.precompiled` to receive precompiled Handlebars templates — this i
 
   * `[precompiled=false]`: Whether precompiled templates should be provided, instead of a compiled Handlebars template function.
 
-#### `render(filePath, context, [options])`
+### `getRemoteTemplates(path, templates, options)`
+Retrieves all the templates specifed in the `templates` argument at the `path` URL. Returns a Promise for an object mapping the compiled templates in the form `{filename: template}`.
+
+Use `options.precompiled` to receive precompiled Handlebars templates — this is useful for sharing templates with client code.
+
+**Parameters:**
+
+* `path`: String path to the directory containing Handlebars template files.
+
+* `templates`: String array of templates to fetch.
+
+* `[options]`: Optional object containing any of the following properties:
+
+  * `[cache]`: Whether cached templates can be used if it have already been requested. This is recommended for production to avoid unnecessary network I/O.
+
+  * `[precompiled=false]`: Whether precompiled templates should be provided, instead of a compiled Handlebars template function.
+
+
+#### `renderFromFile(filePath, context, [options])`
 Renders the template at the specified `filePath` with the `context`, using this instance's `helpers` and partials by default, and returns a Promise for the resulting string.
 
 **Parameters:**
@@ -470,10 +564,27 @@ Renders the template at the specified `filePath` with the `context`, using this 
 
   * `[partials]`: Render-level partials that will be used instead of any instance-level partials. This is used internally as an optimization to avoid re-loading all the partials.
 
-#### `renderView(viewPath, options|callback, [callback])`
-Renders the template at the specified `viewPath` as the `{{{body}}}` within the layout specified by the `defaultLayout` or `options.layout`. Rendering will use this instance's `helpers` and partials, and passes the resulting string to the `callback`.
+### `renderFromRemote(path, context, [options])`
+Renders the template at the specifed `path` from the network with the `context`, using this instance's `helpers` and partials by default, and returns a Promise for the resulting string.
 
-This method is called by Express and is the main entry point into this Express view engine implementation. It adds the concept of a "layout" and delegates rendering to the `render()` method.
+**Parameters:**
+
+* `path`: String path to the Handlebars template file - a URL.
+
+* `context`: Object in which the template will be executed. This contains all of the values to fill into the template.
+
+* `[options]`: Optional object which can contain any of the following properties which affect this view engine's behavior:
+
+  * `[cache]`: Whether a cached template can be used if it have already been requested. This is recommended for production to avoid unnecessary network I/O.
+
+  * `[data]`: Optional object which can contain any data that Handlebars will pipe through the template, all helpers, and all partials. This is a side data channel.
+
+  * `[helpers]`: Render-level helpers that will be used instead of any instance-level helpers; these will be merged with (and will override) any global Handlebars helper functions.
+
+  * `[partials]`: Render-level partials that will be used instead of any instance-level partials. This is used internally as an optimization to avoid re-loading all the partials.
+
+#### `renderLocalView(viewPath, options|callback, [callback])`
+Renders the template at the specified `viewPath` as the `{{{body}}}` within the layout specified by the `defaultLayout` or `options.layout`. Rendering will use this instance's `helpers` and partials, and passes the resulting string to the `callback`.
 
 The `options` will be used both as the context in which the Handlebars templates are rendered, and to signal this view engine on how it should behave, e.g., `options.cache=false` will load _always_ load the templates from disk.
 
@@ -494,6 +605,34 @@ The `options` will be used both as the context in which the Handlebars templates
   * `[layout]`: Optional string path to the Handlebars template file to be used as the "layout". This overrides any `defaultLayout` value. Passing a falsy value will render with no layout (even if a `defaultLayout` is defined).
 
 * `callback`: Function to call once the template is retrieved.
+
+#### `renderRemoteView(viewPath, options, callback)`
+Renders the template at the specified `viewPath` as the `{{{body}}}` within the layout specified by the `defaultLayout` or `options.layout`. Rendering will use this instance's `helpers` and partials, and passes the resulting string to the `callback`. This method fetches the templates from a defined network resource rather than a local directory.
+
+The `options` will be used both as the context in which the Handlebars templates are rendered, and to signal this view engine on how it should behave, e.g., `options.cache=false` will load _always_ load the templates from the network.
+
+**Parameters:**
+
+* `viewPath`: String path to the URL endpoint which to fetch the Handlebars template file which should serve as the `{{{body}}}` when using a layout.
+
+* `[options]`: Optional object which will serve as the context in which the Handlebars templates are rendered. It may also contain any of the following properties which affect this view engine's behavior:
+
+  * `[cache]`: Whether cached templates can be used if they have already been requested. This is recommended for production to avoid unnecessary network I/O.
+
+  * `[data]`: Optional object which can contain any data that Handlebars will pipe through the template, all helpers, and all partials. This is a side data channel.
+
+  * `[helpers]`: Render-level helpers that will be merged with (and will override) instance and global helper functions.
+
+  * `[partials]`: Render-level partials will be merged with (and will override) instance and global partials. This should be a `{partialName: fn}` hash or a Promise of an object with this shape.
+
+  * `[layout]`: Optional string path to the Handlebars template file to be used as the "layout". This overrides any `defaultLayout` value. Passing a falsy value will render with no layout (even if a `defaultLayout` is defined).
+
+* `callback`: Function to call once the template is retrieved.
+
+#### `renderView(viewPath, options|callback, [callback])`
+This method is called by Express and is the main entry point into this Express view engine implementation. It adds the concept of a "layout" and delegates rendering to the `render()` method.
+
+If `layoutsAddress` is defined in the config object, this method uses `renderRemoteView` to render the required tempaltes from a network based resource, else it renders the template from the provided `layoutDir`.
 
 ### Hooks
 
