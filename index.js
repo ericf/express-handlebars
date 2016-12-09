@@ -7,10 +7,12 @@
 'use strict';
 
 var ExpressHandlebars = require('./lib/express-handlebars');
+var NetworkView       = require('./lib/networkView');
 
 exports = module.exports  = exphbs;
 exports.create            = create;
 exports.ExpressHandlebars = ExpressHandlebars;
+exports.NetworkView       = NetworkView;
 
 // -----------------------------------------------------------------------------
 
