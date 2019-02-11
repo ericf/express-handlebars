@@ -38,7 +38,7 @@ After building a half-dozen Express apps, I developed requirements and opinions 
 
 * All async and non-blocking. File system I/O is slow and servers should not be blocked from handling requests while reading from disk. I/O queuing is used to avoid doing unnecessary work.
 
-* Ability to easily precompiled templates and partials for use on the client, enabling template sharing and reuse.
+* Ability to easily precompile templates and partials for use on the client, enabling template sharing and reuse.
 
 * Ability to use a different Handlebars module/implementation other than the Handlebars npm package.
 
