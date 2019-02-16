@@ -25,7 +25,7 @@ var hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// Middleware to expose the app's shared templates to the cliet-side of the app
+// Middleware to expose the app's shared templates to the client-side of the app
 // for pages which need them.
 function exposeTemplates(req, res, next) {
     // Uses the `ExpressHandlebars` instance to get the get the **precompiled**
