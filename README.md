@@ -185,7 +185,7 @@ process.env.NODE_ENV === "production"
 
 A layout is simply a Handlebars template with a `{{{body}}}` placeholder. Usually it will be an HTML page wrapper into which views will be rendered.
 
-This view engine adds back the concept of "layout", which was removed in Express 3.x. It can be configured with a path to the layouts directory, by default it's set to `"views/layouts/"`.
+This view engine adds back the concept of "layout", which was removed in Express 3.x. It can be configured with a path to the layouts directory, by default it's set to relative to `express settings.view` + `layouts/`
 
 There are two ways to set a default layout: configuring the view engine's `defaultLayout` property, or setting [Express locals][] `app.locals.layout`.
 
@@ -337,19 +337,21 @@ app.set('view engine', '.hbs');
 
 **Note:** Setting the app's `"view engine"` setting will make that value the default file extension used for looking up views.
 
-#### `layoutsDir="views/layouts/"`
+#### `layoutsDir`
+Default layouts directory is relative to `express settings.view` + `layouts/`
 The string path to the directory where the layout templates reside.
 
-**Note:** If you configure Express to look for views in a custom location (e.g., `app.set('views', 'some/path/')`), you will need to reflect that by passing an updated path as the `layoutsDir` property in your configuration.
+**Note:** If you configure Express to look for views in a custom location (e.g., `app.set('views', 'some/path/')`), and if your `partialsDir` is not relative to `express settings.view` + `layouts/`, you will need to reflect that by passing an updated path as the `layoutsDir` property in your configuration.
 
-#### `partialsDir="views/partials/"`
+#### `partialsDir`
+Default partials directory is relative to `express settings.view` + `partials/`
 The string path to the directory where the partials templates reside or object with the following properties:
 
 * `dir`: The string path to the directory where the partials templates reside.
 * `namespace`: Optional string namespace to prefix the partial names.
 * `templates`: Optional collection (or promise of a collection) of templates in the form: `{filename: template}`.
 
-**Note:** If you configure Express to look for views in a custom location (e.g., `app.set('views', 'some/path/')`), you will need to reflect that by passing an updated path as the `partialsDir` property in your configuration.
+**Note:** If you configure Express to look for views in a custom location (e.g., `app.set('views', 'some/path/')`), and if your `partialsDir` is not relative to `express settings.view` + `partials/`, you will need to reflect that by passing an updated path as the `partialsDir` property in your configuration.
 
 **Note:** Multiple partials dirs can be used by making `partialsDir` an array of strings, and/or config objects as described above. The namespacing feature is useful if multiple partials dirs are used and their file paths might clash.
 
