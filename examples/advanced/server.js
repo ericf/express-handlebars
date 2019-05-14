@@ -10,7 +10,6 @@ var app = express();
 
 // Create `ExpressHandlebars` instance with a default layout.
 var hbs = exphbs.create({
-    defaultLayout: 'main',
     helpers      : helpers,
 
     // Uses multiple partials dirs, templates in "shared/templates/" are shared
