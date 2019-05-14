@@ -124,7 +124,6 @@ The main layout is the HTML page wrapper which can be reused for the different v
 </html>
 ```
 
-
 **views/home.handlebars:**
 
 The content for the app's home view which will be rendered into the layout's `{{{body}}}`.
