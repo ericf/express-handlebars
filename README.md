@@ -95,7 +95,7 @@ var exphbs  = require('express-handlebars');
 
 var app = express();
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 app.get('/', function (req, res) {
@@ -123,6 +123,8 @@ The main layout is the HTML page wrapper which can be reused for the different v
 </body>
 </html>
 ```
+
+You can use a different name for the default layout when registering Handlebars by passing the `defaultLayout` option, e.g.  `exphbs({defaultLayout: 'name'})`.
 
 **views/home.handlebars:**
 
