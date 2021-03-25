@@ -350,6 +350,7 @@ The string path to the directory where the partials templates reside or object w
 * `dir`: The string path to the directory where the partials templates reside.
 * `namespace`: Optional string namespace to prefix the partial names.
 * `templates`: Optional collection (or promise of a collection) of templates in the form: `{filename: template}`.
+* `rename(filePath, namespace)`: Optional function to rename the partials. Takes two arguments: `filePath`, e.g., `partials/template.handlebars` and `namespace`.
 
 **Note:** If you configure Express to look for views in a custom location (e.g., `app.set('views', 'some/path/')`), and if your `partialsDir` is not relative to `express settings.view` + `partials/`, you will need to reflect that by passing an updated path as the `partialsDir` property in your configuration.
 
